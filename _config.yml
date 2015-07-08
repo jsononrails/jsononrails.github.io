@@ -12,9 +12,9 @@ description: > # this means to ignore newlines until "email:"
 email: jsononrails@gmail.com
 #blog logo
 logo: "/assets/images/logo.png"
-black_umb: "/assets/images/black_umb.png"
+black_umb: "/assets/images/white_umb.png"
 # blog cover
-cover: "/assets/images/cover.jpg"
+cover: "/assets/images/hello_world.png"
 
 name: 'Jason McBride'
 author: 'Jason McBride'

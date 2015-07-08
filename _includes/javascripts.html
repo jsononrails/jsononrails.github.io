@@ -8,8 +8,8 @@
   $(document).ready(function(){
 
     var $window = $(window),
-    $image = $('.post-image-image, .teaserimage-image');
-    
+    $image = $('.post-image-image, .teaserimage-image'),
+    $umb = $('.logo');
       $window.on('scroll', function() {
         var top = $window.scrollTop();
 
@@ -17,6 +17,17 @@
         $image
           .css('transform', 'translate3d(0px, '+top/3+'px, 0px)')
           .css('opacity', 1-Math.max(top/700, 0));
+		$umb.css('opacity', 1-Math.max(top/410, 0));
+		
+		if(top == 402) 
+			$umb.css('background-image', 'url(/assets/images/black_umb.png)').css('opacity', 0);
+		if(top > 402) {
+			
+			$umb.css('background-image', 'url(/assets/images/black_umb.png)').css('opacity', 0+Math.max(top/700, 0));
+		}
+		else
+			$umb.css('background-image', 'url(/assets/images/white_umb.png)');
+
       });
       $window.trigger('scroll');
 
