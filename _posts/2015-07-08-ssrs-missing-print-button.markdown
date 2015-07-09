@@ -1,11 +1,11 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
-date:   2014-08-29 14:34:25
-categories: jekyll update
-tags: featured
-image: /assets/images/rails.jpg
-published: false
+title:  "SSRS Missing Print Button"
+date:   2015-07-08 23:21:25
+categories: [sql server, programming, .net mvc]
+tags: [sql server reporting, windows, .net mvc]
+image: /assets/images/windows.jpg
+published: true
 ---
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve --watch`, which launches a web server and auto-regenerates your site when a file is updated.
 

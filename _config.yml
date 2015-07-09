@@ -1,3 +1,4 @@
+# refer to this link for tag setup http://www.minddust.com/post/tags-and-categories-on-github-pages/
 # Build settings
 markdown: redcarpet
 highlighter: pygments
@@ -7,7 +8,7 @@ gems:
 # Site settings
 title: "Json On Rails"
 description: > # this means to ignore newlines until "email:"
-   A Jekyll theme - Medium inspired
+   Programmer Analyst, my documented journey
 
 email: jsononrails@gmail.com
 #blog logo
@@ -15,14 +16,15 @@ logo: "/assets/images/logo.png"
 black_umb: "/assets/images/white_umb.png"
 # blog cover
 cover: "/assets/images/hello_world.png"
+footer_image: "/assets/images/cover.jpg"
 
-name: 'Jason McBride'
+name: 'Json on Rails'
 author: 'Jason McBride'
 author_image: "/assets/images/author.jpg"
 
 paginate:	5
 
-url: "http://jsononrails.***.***" # the base hostname & protocol for your site
+url: "http://jsononrails.com" # the base hostname & protocol for your site
 baseurl: ""
 
 # social icons and sharing options
@@ -34,12 +36,12 @@ social:
     share_title: ?text=
     share_link: "&amp;url="
 
-#  - icon:	facebook
-#    url:	https://facebook.com/???
-#    desc: Connect with me facebook
-#    share_url: https://www.facebook.com/sharer.php
-#    share_title: ?t=
-#    share_link: "&amp;u="
+  - icon:	facebook
+    url:	https://facebook.com/nomorebetz
+    desc: Connect with me facebook
+    share_url: https://www.facebook.com/sharer.php
+    share_title: ?t=
+    share_link: "&amp;u="
 
   - icon:	github
     url:	https://github.com/jsononrails
@@ -48,9 +50,9 @@ social:
     share_title:
     share_link:
 
-#  - icon:	google-plus
-#    url:	https://google.com/???
-#    desc:	Add me on google+
-#    share_url:
-#    share_title:
-#    share_link:
+  - icon:	google-plus
+    url:	https://plus.google.com/u/0/+JasonMcBrideOnRails/posts
+    desc:	Add me on google+
+    share_url:
+    share_title:
+    share_link:
