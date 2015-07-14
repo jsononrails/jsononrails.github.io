@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "SSRS Missing Print Button"
+title:  "SQL Server Select Queries and Deadlocks"
 date:   2015-07-08 23:21:25
 categories: [sql server, programming, .net mvc]
-tags: [sql server reporting, windows, .net mvc]
+tags: deadlocks
 image: /assets/images/windows.jpg
 published: true
 ---
