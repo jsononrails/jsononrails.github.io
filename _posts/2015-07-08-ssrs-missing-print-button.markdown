@@ -1,4 +1,4 @@
----
+﻿---
 layout: post
 title:  "SQL Server Select Queries and Deadlocks"
 date:   2015-07-08 23:21:25
