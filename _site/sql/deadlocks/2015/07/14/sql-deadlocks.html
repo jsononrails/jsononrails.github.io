@@ -64,7 +64,8 @@
           <p>Recently while working on a real time web application at work we discovered that a select query in one stored procedure was executing at the same time another was doing and insert/update to the same table. This of course created a situation known 
 as a deadlock and our application began to malfunction.</p>
 
-<p>The solution was to update our stored procedure to include <code>SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED</code> see below.</p>
+<p>The solution was to update our stored procedure to include 
+<code>SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED</code> see below.</p>
 
 <div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="n">USE</span> <span class="p">[</span><span class="n">YOUR_DATABASE_NAME</span><span class="p">]</span>
 
@@ -85,7 +86,7 @@ as a deadlock and our application began to malfunction.</p>
 <span class="k">RETURN</span><span class="p">;</span>
 <span class="k">END</span></code></pre></div>
 
-<p>This allows for uncommitted reading of all tables queried within the stored procedure. If you need more granularity then I&#39;d suggest using NOLOCK 
+<p>This allows for uncommitted reading of all tables queried within the stored procedure. If you need more granularity then I&#39;d suggest using <code>NOLOCK</code> 
 only to the table(s) in question individually.</p>
 
         </section>

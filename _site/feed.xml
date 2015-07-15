@@ -6,8 +6,8 @@
 </description>
     <link>http://jsononrails.com/</link>
     <atom:link href="http://jsononrails.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 15 Jul 2015 21:39:54 +0000</pubDate>
-    <lastBuildDate>Wed, 15 Jul 2015 21:39:54 +0000</lastBuildDate>
+    <pubDate>Wed, 15 Jul 2015 21:42:01 +0000</pubDate>
+    <lastBuildDate>Wed, 15 Jul 2015 21:42:01 +0000</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -15,7 +15,8 @@
         <description>&lt;p&gt;Recently while working on a real time web application at work we discovered that a select query in one stored procedure was executing at the same time another was doing and insert/update to the same table. This of course created a situation known 
 as a deadlock and our application began to malfunction.&lt;/p&gt;
 
-&lt;p&gt;The solution was to update our stored procedure to include &lt;code&gt;SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED&lt;/code&gt; see below.&lt;/p&gt;
+&lt;p&gt;The solution was to update our stored procedure to include 
+&lt;code&gt;SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED&lt;/code&gt; see below.&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span class=&quot;n&quot;&gt;USE&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;YOUR_DATABASE_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
 
@@ -36,7 +37,7 @@ as a deadlock and our application began to malfunction.&lt;/p&gt;
 &lt;span class=&quot;k&quot;&gt;RETURN&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;END&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;This allows for uncommitted reading of all tables queried within the stored procedure. If you need more granularity then I&amp;#39;d suggest using NOLOCK 
+&lt;p&gt;This allows for uncommitted reading of all tables queried within the stored procedure. If you need more granularity then I&amp;#39;d suggest using &lt;code&gt;NOLOCK&lt;/code&gt; 
 only to the table(s) in question individually.&lt;/p&gt;
 </description>
         <pubDate>Tue, 14 Jul 2015 14:34:25 +0000</pubDate>
