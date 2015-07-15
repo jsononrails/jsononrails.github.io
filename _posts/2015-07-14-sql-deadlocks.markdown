@@ -1,13 +1,15 @@
-﻿---
+---
 layout: post
-title:  "SQL Server Select Queries and Deadlocks"
-date:   2015-07-08 23:21:25
-categories: [sql server, programming, .net mvc]
-tags: [deadlocks, sql server]
+title:  "SQL Deadlocks"
+date:   2015-07-14 14:34:25
+categories: [sql, deadlocks]
+tags: [sql server, deadlocks, featured]
 image: /assets/images/windows.jpg
+summary: How to deal with SQL deadlocks
 published: true
 ---
-You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve --watch`, which launches a web server and auto-regenerates your site when a file is updated.
+Recently while working on a real time web application at work we discovered that a select query in one stored procedure was executing at the same time another was doing and insert/update to the same table. This of course created a situation known 
+as a deadlock and our application began to malfunction.
 
 To add new posts, simply add a file in the `_posts` directory that follows the convention `YYYY-MM-DD-name-of-post.ext` and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.
 
