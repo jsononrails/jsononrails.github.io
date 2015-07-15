@@ -64,7 +64,26 @@
           <p>Recently while working on a real time web application at work we discovered that a select query in one stored procedure was executing at the same time another was doing and insert/update to the same table. This of course created a situation known 
 as a deadlock and our application began to malfunction.</p>
 
-<p>The solution was to update our stored procedure </p>
+<p>The solution was to update our stored procedure to include &#39;SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED&#39; see below.</p>
+
+<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="n">USE</span> <span class="p">[</span><span class="n">YOUR_DATABASE_NAME</span><span class="p">]</span>
+
+<span class="k">GO</span>
+<span class="k">SET</span> <span class="n">ANSI_NULLS</span> <span class="k">ON</span>
+<span class="k">GO</span>
+<span class="k">SET</span> <span class="n">QUOTED_IDENTIFIER</span> <span class="k">ON</span>
+<span class="k">GO</span>
+<span class="k">ALTER</span> <span class="k">PROCEDURE</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">spS_YOUR_PROC</span><span class="p">]</span>
+    <span class="o">@</span><span class="n">Var1</span> <span class="nb">INT</span>
+<span class="k">AS</span>
+<span class="k">BEGIN</span>
+
+<span class="k">SET</span> <span class="n">TRANSACTION</span> <span class="k">ISOLATION</span> <span class="k">LEVEL</span> <span class="k">READ</span> <span class="k">UNCOMMITTED</span>
+
+    <span class="c1">-- do stuff</span>
+
+<span class="k">RETURN</span><span class="p">;</span>
+<span class="k">END</span></code></pre></div>
 
 <p>see below</p>
 
