@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <!-- (1) Optimize for mobile versions: http://goo.gl/EOpFl -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- (1) force latest IE rendering engine: bit.ly/1c8EiC9 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Posts Tagged &ldquo;deadlocks&rdquo;</title>
+  <meta name="description" content="Programmer Analyst, my documented journey
+" />
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <link rel="canonical" href="http://jsononrails.com/tags/deadlocks/">
+
+  <link rel="shortcut icon" href="/assets/images/favicon.ico">
+<!--  <link rel="stylesheet" href=""> -->
+  <link rel="stylesheet" href="http://brick.a.ssl.fastly.net/Linux+Libertine:400,400i,700,700i/Open+Sans:400,400i,700,700i">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
+  <link rel="stylesheet" type="text/css" media="print" href="/css/print.css" />
+</head>
+
+
+  <body>
+
+    <!-- header start -->
+
+<a href="http://jsononrails.com" class="logo-readium"><span class="logo" style="background-image: url(/assets/images/white_umb.png)"></span></a>
+
+<!-- header end -->
+
+
+    <!-- content start -->
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="teaserimage">
+	<div class="teaserimage-image" style="background-image: url(http://jsononrails.com/assets/images/hello_world.png)">
+	    Teaser Image
+	</div>
+</div>
+<header class="blog-header">
+    
+      <a style="background-image: url('http://jsononrails.com/assets/images/logo.png')" href="http://jsononrails.com" class="blog-logo">Json On Rails</a>
+    
+    <h1 class="blog-title">Json On Rails</h1>
+    <h2 class="blog-description">Programmer Analyst, my documented journey
+</h2>
+    <div class="custom-links">
+      
+		<div class="tag-cloud" style="width: 576px; margin-left:auto; margin-right:auto;">
+			<h2>Posts Tagged &ldquo;deadlocks&rdquo;</h2>
+			<table width="100%">
+			  <tbody>
+					
+				
+				
+				
+				
+				<tr>
+				  <td width="100%">
+					<h3><a href="/sql/deadlocks/2015/07/14/sql-deadlocks.html">SQL Deadlocks</a></h3>
+					<p><strong>July 14, 2015</strong> .  . <a href="http://erjjones.github.com/sql/deadlocks/2015/07/14/sql-deadlocks.html#disqus_thread" data-disqus-identifier="/sql/deadlocks/2015/07/14/sql-deadlocks.html"></a>
+					<br/><small><i>How to deal with SQL deadlocks</i></small>
+					<br/><small><i class="icon-tags"></i>  <a href="/tags/sql server" title="View posts tagged with &quot;sql server&quot;"><u>sql server</u></a>     <a href="/tags/deadlocks" title="View posts tagged with &quot;deadlocks&quot;"><u>deadlocks</u></a>     <a href="/tags/featured" title="View posts tagged with &quot;featured&quot;"><u>featured</u></a>    </small></p>
+				  </td>
+				</tr>
+				
+				
+				
+				
+							
+			  </tbody>
+			</table> 
+		</div>
+        
+    </div>
+</header>
+<div class="bottom-closer">
+  <div class="background-closer-image"  style="background-image: url(http://jsononrails.com/assets/images/cover.jpg)">
+    Image
+  </div>
+  <div class="inner">
+    <h1 class="blog-title">Json On Rails</h1>
+    <h2 class="blog-description">Programmer Analyst, my documented journey
+</h2>
+    <a href="/" class="btn">Home</a>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <!-- content end -->
+
+    <!-- footer start -->
+
+<footer class="site-footer">
+  <a class="subscribe" href="/feed.xml"> <span class="tooltip"> <i class="fa fa-rss"></i> Subscribe!</span></a>
+    <div class="inner">
+         <section class="copyright">All content copyright <a href="mailto:jsononrails@gmail.com">Json on Rails</a> &copy; 2015 &bull; All rights reserved.</section>
+         <section class="poweredby">Made with <a href="http://jekyllrb.com"> Jekyll</a></section>
+    </div>
+</footer>
+
+<!-- footer end -->
+
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/assets/js/index.js"></script>
+<script type="text/javascript" src="/assets/js/readingTime.min.js"></script>
+<script>
+(function ($) {
+  "use strict";
+  $(document).ready(function(){
+
+    var $window = $(window),
+    $image = $('.post-image-image, .teaserimage-image'),
+    $umb = $('.logo');
+      $window.on('scroll', function() {
+        var top = $window.scrollTop();
+
+        if (top < 0 || top > 1500) { return; }
+        $image
+          .css('transform', 'translate3d(0px, '+top/3+'px, 0px)')
+          .css('opacity', 1-Math.max(top/700, 0));
+		$umb.css('opacity', 1-Math.max(top/410, 0));
+		
+		if(top == 402) 
+			$umb.css('background-image', 'url(/assets/images/black_umb.png)').css('opacity', 0);
+		if(top > 402) {
+			
+			$umb.css('background-image', 'url(/assets/images/black_umb.png)').css('opacity', 0+Math.max(top/700, 0));
+		}
+		else
+			$umb.css('background-image', 'url(/assets/images/white_umb.png)');
+
+      });
+      $window.trigger('scroll');
+
+      var height = $('.article-image').height();
+      $('.post-content').css('padding-top', height + 'px');
+
+      $('a[href*=#]:not([href=#])').click(function() {
+        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
+         && location.hostname == this.hostname) {
+          var target = $(this.hash);
+          target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+          if (target.length) {
+            $('html,body').animate({ scrollTop: target.offset().top }, 500);
+            return false;
+          }
+        }
+      });
+
+  });
+}(jQuery));
+</script>
+
+
+
+  </body>
+
+</html>

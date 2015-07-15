@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <!-- (1) Optimize for mobile versions: http://goo.gl/EOpFl -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- (1) force latest IE rendering engine: bit.ly/1c8EiC9 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>SQL Deadlocks</title>
+  <meta name="description" content="Programmer Analyst, my documented journey
+" />
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <link rel="canonical" href="http://jsononrails.com/sql/deadlocks/2015/07/14/sql-deadlocks.html">
+
+  <link rel="shortcut icon" href="/assets/images/favicon.ico">
+<!--  <link rel="stylesheet" href=""> -->
+  <link rel="stylesheet" href="http://brick.a.ssl.fastly.net/Linux+Libertine:400,400i,700,700i/Open+Sans:400,400i,700,700i">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
+  <link rel="stylesheet" type="text/css" media="print" href="/css/print.css" />
+</head>
+
+  <body itemscope itemtype="http://schema.org/Article">
+    <!-- header start -->
+
+<a href="http://jsononrails.com" class="logo-readium"><span class="logo" style="background-image: url(/assets/images/white_umb.png)"></span></a>
+
+<!-- header end -->
+
+    <main class="content" role="main">
+      <article class="post">
+        
+        <div class="article-image">
+          <div class="post-image-image" style="background-image: url(/assets/images/windows.jpg)">
+            Article Image
+          </div>
+          <div class="post-meta">
+            <h1 class="post-title">SQL Deadlocks</h1>
+            <div class="cf post-meta-text">
+              <div class="author-image" style="background-image: url(/assets/images/author.jpg)">Blog Logo</div>
+              <h4 class="author-name" itemprop="author" itemscope itemtype="http://schema.org/Person">Jason McBride</h4>
+              on
+              <time datetime="2015-07-14 10:34">14 Jul 2015</time>
+              <br /><small>Tags:  <a href="/tags/sql server" title="View posts tagged with &quot;sql server&quot;"><u>sql server</u></a>     <a href="/tags/deadlocks" title="View posts tagged with &quot;deadlocks&quot;"><u>deadlocks</u></a>     <a href="/tags/featured" title="View posts tagged with &quot;featured&quot;"><u>featured</u></a>    </small>
+            </div>
+            <div style="text-align:center">
+              <a href="#topofpage" class="topofpage"><i class="fa fa-angle-down"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <section class="post-content">
+          <div class="post-reading">
+            <span class="post-reading-time"></span> read
+          </div>
+          <a name="topofpage"></a>
+          <p>Recently while working on a real time web application at work we discovered that a select query in one stored procedure was executing at the same time another was doing and insert/update to the same table. This of course created a situation known 
+as a deadlock and our application began to malfunction.</p>
+
+<p>The solution was to update our stored procedure </p>
+
+<p>To add new posts, simply add a file in the <code>_posts</code> directory that follows the convention <code>YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+
+<p>Jekyll also offers powerful support for code snippets:</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">&quot;Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="k">end</span>
+<span class="n">print_hi</span><span class="p">(</span><span class="s1">&#39;Tom&#39;</span><span class="p">)</span>
+<span class="c1">#=&gt; prints &#39;Hi, Tom&#39; to STDOUT.</span></code></pre></div>
+
+<p>Check out the <a href="http://jekyllrb.com">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://github.com/jekyll/jekyll-help">Jekyll’s dedicated Help repository</a>.</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="o">&lt;</span><span class="nx">footer</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;site-footer&quot;</span><span class="o">&gt;</span>
+ <span class="o">&lt;</span><span class="nx">a</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;subscribe&quot;</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;/feed.xml&quot;</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nx">span</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;tooltip&quot;</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nx">i</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;fa fa-rss&quot;</span><span class="o">&gt;&lt;</span><span class="err">/i&gt; Subscribe!&lt;/span&gt;&lt;/a&gt;</span>
+  <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="o">&gt;</span><span class="nx">a</span>
+   <span class="o">&lt;</span><span class="nx">section</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;copyright&quot;</span><span class="o">&gt;</span><span class="nx">All</span> <span class="nx">content</span> <span class="nx">copyright</span> <span class="o">&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;mailto:jsononrails@gmail.com&quot;</span><span class="o">&gt;</span><span class="nx">Json</span> <span class="nx">on</span> <span class="nx">Rails</span><span class="o">&lt;</span><span class="err">/a&gt; &amp;copy; 2015 &amp;bull; All rights reserved.&lt;/section&gt;</span>
+   <span class="o">&lt;</span><span class="nx">section</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;poweredby&quot;</span><span class="o">&gt;</span><span class="nx">Made</span> <span class="kd">with</span> <span class="o">&lt;</span><span class="nx">a</span> <span class="nx">href</span><span class="o">=</span><span class="s2">&quot;http://jekyllrb.com&quot;</span><span class="o">&gt;</span> <span class="nx">Jekyll</span><span class="o">&lt;</span><span class="err">/a&gt;&lt;/section&gt;</span>
+  <span class="o">&lt;</span><span class="err">/div&gt;</span>
+<span class="o">&lt;</span><span class="err">/footer&gt;</span></code></pre></div>
+
+        </section>
+        <footer class="post-footer">
+          <section class="share">
+            
+              
+                <a class="icon-twitter" href="http://twitter.com/share?text=SQL+Deadlocks&amp;url=http://jsononrails.com/sql/deadlocks/2015/07/14/sql-deadlocks"
+                  onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+                <i class="fa fa-twitter"></i><span class="hidden">twitter</span>
+                </a>
+              
+            
+              
+                <a class="icon-facebook" href="https://www.facebook.com/sharer.php?t=SQL+Deadlocks&amp;u=http://jsononrails.com/sql/deadlocks/2015/07/14/sql-deadlocks"
+                  onclick="window.open(this.href, 'facebook-share', 'width=550,height=255');return false;">
+                <i class="fa fa-facebook"></i><span class="hidden">facebook</span>
+                </a>
+              
+            
+              
+            
+              
+            
+          </section>
+        </footer>
+        <div class="bottom-teaser cf">
+          <div class="isLeft">
+            <h5 class="index-headline featured"><span>Written by</span></h5>
+            <section class="author">
+              <div class="author-image" style="background-image: url(/assets/images/author.jpg)">Blog Logo</div>
+              <h4>Jason McBride</h4>
+              <p class="bio"></p>
+              <hr>
+              <p class="published">Published <time datetime="2015-07-14 10:34">14 Jul 2015</time></p>
+            </section>
+          </div>
+          
+          <div class="isRight">
+            <h5 class="index-headline featured"><span>Supported by</span></h5>
+            <footer class="site-footer">
+              <section class="poweredby">Proudly published with <a href="http://jekyllrb.com"> Jekyll</a></section>
+              <a class="subscribe" href="/feed.xml"> <span class="tooltip"> <i class="fa fa-rss"></i> You should subscribe to my feed.</span></a>
+              <div class="inner">
+                <section class="copyright">All content copyright <a href="/">Json on Rails</a> &copy; 2015<br>All rights reserved.</section>
+              </div>
+            </footer>
+          </div>
+        </div>
+      </article>
+    </main>
+    <div class="bottom-closer">
+      <div class="background-closer-image"  style="background-image: url(/assets/images/cover.jpg)">
+        Image
+      </div>
+      <div class="inner">
+        <h1 class="blog-title">Json On Rails</h1>
+        <h2 class="blog-description">Programmer Analyst, my documented journey
+</h2>
+        <a href="/" class="btn">Home</a>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/assets/js/index.js"></script>
+<script type="text/javascript" src="/assets/js/readingTime.min.js"></script>
+<script>
+(function ($) {
+  "use strict";
+  $(document).ready(function(){
+
+    var $window = $(window),
+    $image = $('.post-image-image, .teaserimage-image'),
+    $umb = $('.logo');
+      $window.on('scroll', function() {
+        var top = $window.scrollTop();
+
+        if (top < 0 || top > 1500) { return; }
+        $image
+          .css('transform', 'translate3d(0px, '+top/3+'px, 0px)')
+          .css('opacity', 1-Math.max(top/700, 0));
+		$umb.css('opacity', 1-Math.max(top/410, 0));
+		
+		if(top == 402) 
+			$umb.css('background-image', 'url(/assets/images/black_umb.png)').css('opacity', 0);
+		if(top > 402) {
+			
+			$umb.css('background-image', 'url(/assets/images/black_umb.png)').css('opacity', 0+Math.max(top/700, 0));
+		}
+		else
+			$umb.css('background-image', 'url(/assets/images/white_umb.png)');
+
+      });
+      $window.trigger('scroll');
+
+      var height = $('.article-image').height();
+      $('.post-content').css('padding-top', height + 'px');
+
+      $('a[href*=#]:not([href=#])').click(function() {
+        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
+         && location.hostname == this.hostname) {
+          var target = $(this.hash);
+          target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+          if (target.length) {
+            $('html,body').animate({ scrollTop: target.offset().top }, 500);
+            return false;
+          }
+        }
+      });
+
+  });
+}(jQuery));
+</script>
+
+
+  </body>
+</html>
