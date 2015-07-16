@@ -64,7 +64,7 @@
           <p>Recently while working on a real time web application at work we discovered that a select query in one stored procedure was executing at the same time another was doing and insert/update to the same table. This of course created a situation known 
 as a deadlock and our application began to malfunction.</p>
 
-<p>The solution was to update our stored procedure to include 
+<p>The solution was to update our stored procedure to include<br />
 <code>SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED</code> see below.</p>
 
 <div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="n">USE</span> <span class="p">[</span><span class="n">YOUR_DATABASE_NAME</span><span class="p">]</span>
@@ -88,6 +88,54 @@ as a deadlock and our application began to malfunction.</p>
 
 <p>This allows for uncommitted reading of all tables queried within the stored procedure. If you need more granularity then I&#39;d suggest using <code>NOLOCK</code> 
 only to the table(s) in question individually.</p>
+
+<p>Then in our database repository where we call the stored procedure I wrap the call in a <code>try catch</code> to enforce a retry if the database throws a &#39;deadlock&#39; or &#39;timeout&#39; exception.http</p>
+
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">public</span> <span class="kt">bool</span> <span class="nf">MyFunction</span><span class="p">(</span><span class="kt">var</span> <span class="n">var1</span><span class="p">,</span> <span class="kt">var</span> <span class="n">var2</span><span class="p">)</span>
+    <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">retryCount</span> <span class="p">=</span> <span class="m">3</span><span class="p">;</span>
+    <span class="kt">bool</span> <span class="n">success</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+  
+    <span class="k">try</span>
+    <span class="p">{</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">retryCount</span> <span class="p">&gt;</span> <span class="m">0</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">success</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// do database stuff</span>
+            
+            <span class="c1">// on success</span>
+            <span class="n">success</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">catch</span> <span class="p">(</span><span class="n">SqlException</span> <span class="n">e</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Number</span> <span class="p">==</span> <span class="m">1205</span><span class="p">)</span> <span class="c1">// SQL deadlock exception</span>
+        <span class="p">{</span>
+            <span class="c1">// log exceptions</span>
+            
+            <span class="c1">// decrement retry count</span>
+            <span class="n">retryCount</span><span class="p">--;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Number</span> <span class="p">==</span> <span class="p">-</span><span class="m">2</span><span class="p">)</span> <span class="c1">// SQL timeout exception</span>
+        <span class="p">{</span>
+            <span class="c1">// log exceptions</span>
+            
+            <span class="c1">// decrement retry count</span>
+            <span class="n">retryCount</span><span class="p">--;</span>
+        <span class="p">}</span>
+  
+        <span class="c1">// log exception</span>
+        
+        <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// log exception</span>
+        
+        <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+    <span class="p">}</span>
+  
+    <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+    <span class="p">}</span></code></pre></div>
 
         </section>
         <footer class="post-footer">
