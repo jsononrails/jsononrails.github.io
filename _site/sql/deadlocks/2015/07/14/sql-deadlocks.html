@@ -89,13 +89,13 @@ as a deadlock and our application began to malfunction.</p>
 <p>This allows for uncommitted reading of all tables queried within the stored procedure. If you need more granularity then I&#39;d suggest using <code>NOLOCK</code> 
 only to the table(s) in question individually.</p>
 
-<p>Then in our database repository where we call the stored procedure I wrap the call in a <code>try catch</code> to enforce a retry if the database throws a &#39;deadlock&#39; or &#39;timeout&#39; exception.http</p>
+<p>Then in our database repository where we call the stored procedure I wrap the call in a <code>try catch</code> to enforce a retry if the database throws a <code>deadlock</code> or <code>timeout</code>&#39; exception.http</p>
 
 <div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">public</span> <span class="kt">bool</span> <span class="nf">MyFunction</span><span class="p">(</span><span class="kt">var</span> <span class="n">var1</span><span class="p">,</span> <span class="kt">var</span> <span class="n">var2</span><span class="p">)</span>
-    <span class="p">{</span>
+<span class="p">{</span>
     <span class="kt">int</span> <span class="n">retryCount</span> <span class="p">=</span> <span class="m">3</span><span class="p">;</span>
     <span class="kt">bool</span> <span class="n">success</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
-  
+    
     <span class="k">try</span>
     <span class="p">{</span>
         <span class="k">while</span> <span class="p">(</span><span class="n">retryCount</span> <span class="p">&gt;</span> <span class="m">0</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">success</span><span class="p">)</span>
@@ -122,7 +122,7 @@ only to the table(s) in question individually.</p>
             <span class="c1">// decrement retry count</span>
             <span class="n">retryCount</span><span class="p">--;</span>
         <span class="p">}</span>
-  
+    
         <span class="c1">// log exception</span>
         
         <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
@@ -133,9 +133,9 @@ only to the table(s) in question individually.</p>
         
         <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
     <span class="p">}</span>
-  
+    
     <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
-    <span class="p">}</span></code></pre></div>
+<span class="p">}</span></code></pre></div>
 
         </section>
         <footer class="post-footer">
