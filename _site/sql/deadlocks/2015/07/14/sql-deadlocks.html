@@ -137,6 +137,23 @@ only to the table(s) in question individually.</p>
     <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
 <span class="p">}</span></code></pre></div>
 
+<p>% if page.comments %
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    // Required: on line below, replace text in quotes with your forum shortname
+    var disqus_shortname = &#39;FORUM SHORTNAME GOES HERE&#39;;</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">/* * * DON&#39;T EDIT BELOW THIS LINE * * */
+(function() {
+    var dsq = document.createElement(&#39;script&#39;); dsq.type = &#39;text/javascript&#39;; dsq.async = true;
+    dsq.src = &#39;//&#39; + disqus_shortname + &#39;.disqus.com/embed.js&#39;;
+    (document.getElementsByTagName(&#39;head&#39;)[0] || document.getElementsByTagName(&#39;body&#39;)[0]).appendChild(dsq);
+})();
+</code></pre></div>
+<p></script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+% endif %</p>
+
         </section>
         <footer class="post-footer">
           <section class="share">
