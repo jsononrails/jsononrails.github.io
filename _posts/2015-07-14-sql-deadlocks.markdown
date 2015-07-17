@@ -3,7 +3,7 @@ layout: post
 title:  "SQL Deadlocks"
 date:   2015-07-14 14:34:25
 categories: [sql, deadlocks]
-tags: [sql server, deadlocks, dot net, C Sharp, featured]
+tags: [sql server, deadlocks, dot net, C Sharp]
 image: /assets/images/windows.jpg
 summary: How to deal with SQL deadlocks
 comments: true
