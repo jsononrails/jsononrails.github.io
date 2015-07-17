@@ -4,7 +4,7 @@ title:  "JavaScript Strikes Again"
 date:   2015-07-17 16:17:25
 categories: [web, javascript]
 tags: [web, javascript, html, firefox, chrome, internet explorer, featured]
-image: /assets/images/windows.jpg
+image: /assets/images/rails.jpg
 summary: Explicit Object Property Declarations
 comments: true
 published: true
