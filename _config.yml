@@ -53,6 +53,6 @@ social:
   - icon:	google-plus
     url:	https://plus.google.com/u/0/+JasonMcBrideOnRails/posts
     desc:	Add me on google+
-    share_url:
+    share_url: "&amp;url="
     share_title:
     share_link:
