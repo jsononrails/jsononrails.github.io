@@ -39,7 +39,7 @@ END
 This allows for uncommitted reading of all tables queried within the stored procedure. If you need more granularity then I'd suggest using `NOLOCK` 
 only to the table(s) in question individually.
 
-Then in our database repository where we call the stored procedure I wrap the call in a `try catch` to enforce a retry if the database throws a `deadlock` or `timeout`' exception
+Then in our database repository where we call the stored procedure I wrap the call in a `try catch` to enforce a retry if the database throws a `deadlock` or `timeout` exception
 
 {% highlight csharp %}
 public bool MyFunction(var var1, var var2)
