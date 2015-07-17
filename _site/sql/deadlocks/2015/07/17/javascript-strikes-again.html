@@ -73,13 +73,13 @@ also working in Internet Explorer and Chrome as well.</p>
     <span class="nx">myObject</span> <span class="o">=</span> <span class="p">{};</span>
     
     <span class="nx">myObject</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span> <span class="nx">firstName</span><span class="p">,</span> <span class="nx">lastName</span><span class="p">,</span> <span class="nx">phoneNumber</span> <span class="p">});</span></code></pre></div>
-<div class="highlight"><pre><code class="language-text" data-lang="text">In FireFox this seems to behave as expected either it doesn&#39;t care or need a property name to be defined 
-or it smartly default names the property to the variable name and sets its value at the same time.
-</code></pre></div>
+
+<p>In FireFox this seems to behave as expected either it doesn&#39;t care or need a property name to be defined or it smartly default names the property to the variable name and sets its value at the same time.</p>
+
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">myObject</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span> <span class="nx">firstName</span><span class="o">:</span> <span class="nx">firstName</span><span class="p">,</span> <span class="nx">lastName</span><span class="o">:</span> <span class="nx">lastName</span><span class="p">,</span> <span class="nx">phoneNumber</span><span class="o">:</span> <span class="nx">phoneNumber</span> <span class="p">});</span></code></pre></div>
-<div class="highlight"><pre><code class="language-text" data-lang="text">However in Internet Explorer or Chrome this completely fails and a null reference exception is thrown so I had to explicitly specify the 
-property names on the push in order to get this to work cross browser.
-</code></pre></div>
+
+<p>However in Internet Explorer or Chrome this completely fails and a null reference exception is thrown so I had to explicitly specify the property names on the push in order to get this to work cross browser.</p>
+
 <p>See the following updated example:</p>
 
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span>
