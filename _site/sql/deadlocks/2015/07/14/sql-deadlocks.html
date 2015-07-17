@@ -48,7 +48,7 @@
               <h4 class="author-name" itemprop="author" itemscope itemtype="http://schema.org/Person">Jason McBride</h4>
               on
               <time datetime="2015-07-14 14:34">14 Jul 2015</time>
-              <br /><small>Tags:  <a href="/tags/sql server" title="View posts tagged with &quot;sql server&quot;"><u>sql server</u></a>     <a href="/tags/deadlocks" title="View posts tagged with &quot;deadlocks&quot;"><u>deadlocks</u></a>     <a href="/tags/featured" title="View posts tagged with &quot;featured&quot;"><u>featured</u></a>    </small>
+              <br /><small>Tags:  <a href="/tags/sql server" title="View posts tagged with &quot;sql server&quot;"><u>sql server</u></a>     <a href="/tags/deadlocks" title="View posts tagged with &quot;deadlocks&quot;"><u>deadlocks</u></a>     <a href="/tags/.net" title="View posts tagged with &quot;.net&quot;"><u>.net</u></a>     <a href="/tags/C#" title="View posts tagged with &quot;C#&quot;"><u>C#</u></a>     <a href="/tags/featured" title="View posts tagged with &quot;featured&quot;"><u>featured</u></a>    </small>
             </div>
             <div style="text-align:center">
               <a href="#topofpage" class="topofpage"><i class="fa fa-angle-down"></i></a>
@@ -89,7 +89,7 @@ as a deadlock and our application began to malfunction.</p>
 <p>This allows for uncommitted reading of all tables queried within the stored procedure. If you need more granularity then I&#39;d suggest using <code>NOLOCK</code> 
 only to the table(s) in question individually.</p>
 
-<p>Then in our database repository where we call the stored procedure I wrap the call in a <code>try catch</code> to enforce a retry if the database throws a <code>deadlock</code> or <code>timeout</code>&#39; exception</p>
+<p>Then in our database repository where we call the stored procedure I wrap the call in a <code>try catch</code> to enforce a retry if the database throws a <code>deadlock</code> or <code>timeout</code> exception</p>
 
 <div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">public</span> <span class="kt">bool</span> <span class="nf">MyFunction</span><span class="p">(</span><span class="kt">var</span> <span class="n">var1</span><span class="p">,</span> <span class="kt">var</span> <span class="n">var2</span><span class="p">)</span>
 <span class="p">{</span>
