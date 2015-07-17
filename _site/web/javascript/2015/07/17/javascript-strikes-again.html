@@ -16,7 +16,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  <link rel="canonical" href="http://jsononrails.com/sql/deadlocks/2015/07/17/javascript-strikes-again.html">
+  <link rel="canonical" href="http://jsononrails.com/web/javascript/2015/07/17/javascript-strikes-again.html">
 
   <link rel="shortcut icon" href="/assets/images/favicon.ico">
 <!--  <link rel="stylesheet" href=""> -->
@@ -48,7 +48,7 @@
               <h4 class="author-name" itemprop="author" itemscope itemtype="http://schema.org/Person">Jason McBride</h4>
               on
               <time datetime="2015-07-17 16:17">17 Jul 2015</time>
-              <br /><small>Tags:  <a href="/tags/web" title="View posts tagged with &quot;web&quot;"><u>web</u></a>     <a href="/tags/javascript" title="View posts tagged with &quot;javascript&quot;"><u>javascript</u></a>     <a href="/tags/html" title="View posts tagged with &quot;html&quot;"><u>html</u></a>     <a href="/tags/featured" title="View posts tagged with &quot;featured&quot;"><u>featured</u></a>    </small>
+              <br /><small>Tags:  <a href="/tags/web" title="View posts tagged with &quot;web&quot;"><u>web</u></a>     <a href="/tags/javascript" title="View posts tagged with &quot;javascript&quot;"><u>javascript</u></a>     <a href="/tags/html" title="View posts tagged with &quot;html&quot;"><u>html</u></a>     <a href="/tags/firefox" title="View posts tagged with &quot;firefox&quot;"><u>firefox</u></a>     <a href="/tags/chrome" title="View posts tagged with &quot;chrome&quot;"><u>chrome</u></a>     <a href="/tags/internet explorer" title="View posts tagged with &quot;internet explorer&quot;"><u>internet explorer</u></a>     <a href="/tags/featured" title="View posts tagged with &quot;featured&quot;"><u>featured</u></a>    </small>
             </div>
             <div style="text-align:center">
               <a href="#topofpage" class="topofpage"><i class="fa fa-angle-down"></i></a>
@@ -61,8 +61,8 @@
             <span class="post-reading-time"></span> read
           </div>
           <a name="topofpage"></a>
-          <p>Today I discovered a descrepency with my JavaScript code that because it was working in FireFox I assumed it was
-also working in Internet Explorer and Chrome as well.</p>
+          <p>Today I discovered a discrepancy  with my JavaScript code and because it was working in Firefox I assumed it was
+also working in Internet Explorer/Chrome as well.</p>
 
 <p>See the following example:</p>
 
@@ -74,11 +74,13 @@ also working in Internet Explorer and Chrome as well.</p>
     
     <span class="nx">myObject</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span> <span class="nx">firstName</span><span class="p">,</span> <span class="nx">lastName</span><span class="p">,</span> <span class="nx">phoneNumber</span> <span class="p">});</span></code></pre></div>
 
-<p>In FireFox this seems to behave as expected either it doesn&#39;t care or need a property name to be defined or it smartly default names the property to the variable name and sets its value at the same time.</p>
+<p>In Firefox this seems to behave as expected. Either it doesn&#39;t care or need a property name to be defined or it smartly default names the property to the variable name and sets its value at the same time.</p>
+
+<p>Example:</p>
 
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">myObject</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span> <span class="nx">firstName</span><span class="o">:</span> <span class="nx">firstName</span><span class="p">,</span> <span class="nx">lastName</span><span class="o">:</span> <span class="nx">lastName</span><span class="p">,</span> <span class="nx">phoneNumber</span><span class="o">:</span> <span class="nx">phoneNumber</span> <span class="p">});</span></code></pre></div>
 
-<p>However in Internet Explorer or Chrome this completely fails and a null reference exception is thrown so I had to explicitly specify the property names on the push in order to get this to work cross browser.</p>
+<p>However in Internet Explorer/Chrome this completely fails and a null reference exception is thrown so I had to explicitly specify the property names on the push in order to get this to work cross browser.</p>
 
 <p>See the following updated example:</p>
 
@@ -94,22 +96,22 @@ also working in Internet Explorer and Chrome as well.</p>
         <span class="nx">phoneNumber</span><span class="o">:</span> <span class="nx">phoneNumber</span>
     <span class="p">});</span></code></pre></div>
 
-<p>Normally I would have tested this cross browser and found this bug sooner but in this particular project our spec was 
-specific to FireFox support only as the app is not a public facing site but more of an internal tool for the customer.</p>
+<p>Normally I would have tested this cross browser and found this bug sooner. However for this particular project our spec was 
+specific to Firefox support only, as the app is not a public facing site but more of an internal tool for our customer.</p>
 
         </section>
         <footer class="post-footer">
           <section class="share">
             
               
-                <a class="icon-twitter" href="http://twitter.com/share?text=JavaScript+Strikes+Again&amp;url=http://jsononrails.com/sql/deadlocks/2015/07/17/javascript-strikes-again"
+                <a class="icon-twitter" href="http://twitter.com/share?text=JavaScript+Strikes+Again&amp;url=http://jsononrails.com/web/javascript/2015/07/17/javascript-strikes-again"
                   onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
                 <i class="fa fa-twitter"></i><span class="hidden">twitter</span>
                 </a>
               
             
               
-                <a class="icon-facebook" href="https://www.facebook.com/sharer.php?t=JavaScript+Strikes+Again&amp;u=http://jsononrails.com/sql/deadlocks/2015/07/17/javascript-strikes-again"
+                <a class="icon-facebook" href="https://www.facebook.com/sharer.php?t=JavaScript+Strikes+Again&amp;u=http://jsononrails.com/web/javascript/2015/07/17/javascript-strikes-again"
                   onclick="window.open(this.href, 'facebook-share', 'width=550,height=255');return false;">
                 <i class="fa fa-facebook"></i><span class="hidden">facebook</span>
                 </a>
@@ -118,7 +120,7 @@ specific to FireFox support only as the app is not a public facing site but more
               
             
               
-                <a class="icon-google-plus" href="&amp;url=JavaScript+Strikes+Againhttp://jsononrails.com/sql/deadlocks/2015/07/17/javascript-strikes-again"
+                <a class="icon-google-plus" href="&amp;url=JavaScript+Strikes+Againhttp://jsononrails.com/web/javascript/2015/07/17/javascript-strikes-again"
                   onclick="window.open(this.href, 'google-plus-share', 'width=550,height=255');return false;">
                 <i class="fa fa-google-plus"></i><span class="hidden">google-plus</span>
                 </a>
