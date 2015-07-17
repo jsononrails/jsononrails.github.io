@@ -13,6 +13,7 @@ Today I discovered a descrepency with my JavaScript code that because it was wor
 also working in Internet Explorer and Chrome as well.
 
 See the following example:
+
 {% highlight js %}
 var
 	firstName = 'John',
