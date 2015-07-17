@@ -91,6 +91,8 @@ only to the table(s) in question individually.</p>
 
 <p>Then in our database repository where we call the stored procedure I wrap the call in a <code>try catch</code> to enforce a retry if the database throws a <code>deadlock</code> or <code>timeout</code> exception</p>
 
+<p><em>The following is C# code</em></p>
+
 <div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">public</span> <span class="kt">bool</span> <span class="nf">MyFunction</span><span class="p">(</span><span class="kt">var</span> <span class="n">var1</span><span class="p">,</span> <span class="kt">var</span> <span class="n">var2</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="kt">int</span> <span class="n">retryCount</span> <span class="p">=</span> <span class="m">3</span><span class="p">;</span>

@@ -41,6 +41,7 @@ only to the table(s) in question individually.
 
 Then in our database repository where we call the stored procedure I wrap the call in a `try catch` to enforce a retry if the database throws a `deadlock` or `timeout` exception
 
+<em>The following is C# code</em>
 {% highlight csharp %}
 public bool MyFunction(var var1, var var2)
 {
