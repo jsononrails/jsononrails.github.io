@@ -60,22 +60,7 @@
                 </a>
               {% endif %}
             {% endfor %}
-          </section>
-        </footer>
-        <div class="bottom-teaser cf">
-          <div class="isLeft">
-            <h5 class="index-headline featured"><span>Written by</span></h5>
-            <section class="author">
-              <div class="author-image" style="background-image: url({{site.author_image}})">Blog Logo</div>
-              <h4>{{ site.author }}</h4>
-              <p class="bio">{{author.bio}}</p>
-              <hr>
-              <p class="published">Published <time datetime="{{ page.date | date: "%F %R" }}">{{ page.date | date_to_string }}</time></p>
-            </section>
-          </div>
-          {{/post}}
-          
-          {% if page.comments %}
+            {% if page.comments %}
           <div id="disqus_thread"></div>
             <script type="text/javascript">
                 /* * * CONFIGURATION VARIABLES * * */
@@ -90,7 +75,20 @@
             </script>
             <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
           {% endif %}
-          
+          </section>
+        </footer>
+        <div class="bottom-teaser cf">
+          <div class="isLeft">
+            <h5 class="index-headline featured"><span>Written by</span></h5>
+            <section class="author">
+              <div class="author-image" style="background-image: url({{site.author_image}})">Blog Logo</div>
+              <h4>{{ site.author }}</h4>
+              <p class="bio">{{author.bio}}</p>
+              <hr>
+              <p class="published">Published <time datetime="{{ page.date | date: "%F %R" }}">{{ page.date | date_to_string }}</time></p>
+            </section>
+          </div>
+          {{/post}}
           <div class="isRight">
             <h5 class="index-headline featured"><span>Supported by</span></h5>
             <footer class="site-footer">
