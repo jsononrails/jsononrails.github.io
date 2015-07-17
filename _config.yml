@@ -54,5 +54,5 @@ social:
     url:	https://plus.google.com/u/0/+JasonMcBrideOnRails/posts
     desc:	Add me on google+
     share_url: https://plus.google.com/share
-    share_title:
+    share_title: ?title=
     share_link: "&amp;url="
