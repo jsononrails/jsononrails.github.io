@@ -19,6 +19,7 @@ comments: true
 published: true
 ---
 
+
 Today I discovered a discrepancy  with my JavaScript code and because it was working in Firefox I assumed it was
 also working in Internet Explorer/Chrome as well.
 
