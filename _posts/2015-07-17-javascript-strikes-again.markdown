@@ -12,8 +12,8 @@ tags:
   - chrome
   - internet explorer
   - featured
-image: /assets/images/rails.jpg
-summary: Explicit Key Value Declarations
+image: /assets/images/windows.jpg
+summary: Explicit Key Value Declarations and how Firefox handles them differently from other browsers.
 comments: true
 published: true
 ---
