@@ -1,7 +1,7 @@
 ---
 layout: post
 title: JavaScript Strikes Again
-date: {}
+date: 2015-07-17 16:34:25
 categories: 
   - web
   - javascript
