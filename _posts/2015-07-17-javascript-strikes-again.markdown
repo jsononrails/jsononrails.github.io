@@ -1,7 +1,9 @@
 ---
 layout: post
 title: JavaScript Strikes Again
-date: 2015-07-17 16:34:25
+date: 
+  - 2015-07-17T16:34:25.000Z
+  - "Fri Jul 17 2015 12:34:25 GMT-0400 (EDT)"
 categories: 
   - web
   - javascript
@@ -13,11 +15,13 @@ tags:
   - chrome
   - internet explorer
   - featured
+  - "web,javascript,html,firefox,chrome,internet explorer,featured"
 image: /assets/images/rails.jpg
-summary: Explicit Object Property Declarations
+summary: Explicit Key Value Declarations
 comments: true
 published: true
 ---
+
 
 
 Today I discovered a discrepancy  with my JavaScript code and because it was working in Firefox I assumed it was
