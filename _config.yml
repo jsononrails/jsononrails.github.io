@@ -56,3 +56,74 @@ social:
     share_url: https://plus.google.com/share
     share_title: ?title=
     share_link: "&amp;url="
+
+prose:
+  rooturl: '_posts'
+  siteurl: 'http://jsononrails.github.io/'
+  relativeLinks: 'http://jsononrails.github.io/links.jsonp'
+  media: '/assets/images/'
+  metadata:
+    _posts:
+      - name: "published"
+        field:
+          label: "Published"
+          element: "checkbox"
+          value: "true"
+      - name: "layout"
+        field:
+          element: "hidden"
+          label: "Layout"
+          value: "post"
+      - name: "title"
+        field:
+          label: "Title"
+          element: "text"
+          value: "An Awesome Headline!"
+      - name: "summary"
+        field:
+          element: "text"
+          label: "Summary"
+          placeholder: "Enter Post Summary"
+      - name: "date"
+        field:
+          element: "text"
+          label: "Date"
+          placeholder: "YYYY-MM-DD"
+      - name: "categories"
+        field:
+          element: "multiselect"
+          label: "Add categories"
+          placeholder: "Choose categories"
+          value: personal
+          options:
+            - name: "Personal"
+              value: personal
+            - name: "AI"
+              value: ai
+            - name: "Programming"
+              value: programming
+            - name: "Machine Learning"
+              value: machinelearning
+            - name: "Interesting"
+              value: interesting
+            - name: "Web-Development"
+              value: webdevelopment
+          alterable: true
+      - name: "tags"
+        field:
+          element: "text"
+          label: "Tags"
+          placeholder: "Enter tags, separated by spaces"
+      - name: "image"
+        field:
+          element: "text"
+          label: "Image"
+          placeholder: "windows.jpg"
+      - name: "comments"
+        field:
+          element: "checkbox"
+          label: "Comments"
+          value: false
+
+
+include: [".htaccess"]
