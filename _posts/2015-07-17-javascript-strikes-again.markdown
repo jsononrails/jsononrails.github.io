@@ -13,7 +13,6 @@ tags:
   - chrome
   - internet explorer
   - featured
-  - "web,javascript,html,firefox,chrome,internet explorer,featured"
 image: /assets/images/rails.jpg
 summary: Explicit Key Value Declarations
 comments: true
