@@ -27,7 +27,7 @@ See the following example:
 {% highlight js %}
 var
 	firstName = 'John',
-	lastName = 'Smith',
+	lastName = 'Connor',
 	phoneNumber = '123-123-1234',
 	myArray[] = {};
 	
