@@ -6,8 +6,8 @@
 </description>
     <link>http://jsononrails.com/</link>
     <atom:link href="http://jsononrails.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 19 Jul 2015 01:42:27 +0000</pubDate>
-    <lastBuildDate>Sun, 19 Jul 2015 01:42:27 +0000</lastBuildDate>
+    <pubDate>Sun, 19 Jul 2015 21:54:12 +0000</pubDate>
+    <lastBuildDate>Sun, 19 Jul 2015 21:54:12 +0000</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -51,8 +51,8 @@ also working in Internet Explorer/Chrome as well.&lt;/p&gt;
 specific to Firefox support only, as the app is not a public facing site but more of an internal tool for our customer.&lt;/p&gt;
 </description>
         <pubDate>Fri, 17 Jul 2015 16:34:25 +0000</pubDate>
-        <link>http://jsononrails.com/web/javascript/2015/07/17/javascript-strikes-again.html</link>
-        <guid isPermaLink="true">http://jsononrails.com/web/javascript/2015/07/17/javascript-strikes-again.html</guid>
+        <link>http://jsononrails.com/webdevelopment/2015/07/17/javascript-strikes-again.html</link>
+        <guid isPermaLink="true">http://jsononrails.com/webdevelopment/2015/07/17/javascript-strikes-again.html</guid>
         
         <category>web</category>
         
@@ -68,10 +68,10 @@ specific to Firefox support only, as the app is not a public facing site but mor
         
         <category>featured</category>
         
+        <category>web,javascript,html,firefox,chrome,internet explorer,featured</category>
         
-        <category>web</category>
         
-        <category>javascript</category>
+        <category>webdevelopment</category>
         
       </item>
     

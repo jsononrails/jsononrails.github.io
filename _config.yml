@@ -111,9 +111,34 @@ prose:
           alterable: true
       - name: "tags"
         field:
-          element: "text"
-          label: "Tags"
-          placeholder: "Enter tags, separated by spaces"
+          element: "multiselect"
+          label: "Add tags"
+          placeholder: "Choose tags"
+          value: web
+          options:
+            - name: "Web"
+              value: web
+            - name: "JavaScript"
+              value: javascript
+            - name: "HTML"
+              value: html
+            - name: "Firefox"
+              value: firefox
+            - name: "Chrome"
+              value: chrome
+            - name: "Internet Explorer"
+              value: internetexplorer
+            - name: "Featured"
+              value: featured
+            - name: "SQL Server"
+              value: sqlserver
+            - name: "Deadlocks"
+              value: deadlocks
+            - name: "Dot Net"
+              value: dotnet
+            - name: "C Sharp"
+              value: csharp
+          alterable: true
       - name: "image"
         field:
           element: "text"

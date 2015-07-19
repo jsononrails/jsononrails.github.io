@@ -3,10 +3,8 @@ layout: post
 title: JavaScript Strikes Again
 date: 
   - 2015-07-17T16:34:25.000Z
-  - "Fri Jul 17 2015 12:34:25 GMT-0400 (EDT)"
 categories: 
-  - web
-  - javascript
+  - webdevelopment
 tags: 
   - web
   - javascript
@@ -21,8 +19,6 @@ summary: Explicit Key Value Declarations
 comments: true
 published: true
 ---
-
-
 
 Today I discovered a discrepancy  with my JavaScript code and because it was working in Firefox I assumed it was
 also working in Internet Explorer/Chrome as well.
