@@ -16,6 +16,7 @@ tags:
 image: windows.jpg
 ---
 
+
 Sometimes you may find yourself in need of a keep alive to maintain an active session or a connection from your client back to your server. Today I came across a need for this in one of our projects below is my implementation of a client to server keep alive using Ajax.
 
 {% highlight js%}
