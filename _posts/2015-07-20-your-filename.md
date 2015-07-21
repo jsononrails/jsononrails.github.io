@@ -11,6 +11,8 @@ tags:
   - web
   - javascript
   - html
+  - dotnet
+  - csharp
 image: windows.jpg
 ---
 
