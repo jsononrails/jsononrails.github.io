@@ -1,7 +1,7 @@
 ---
 layout: post
 published: false
-title: ""
+title: Client side keep alive in JavaScript
 comments: true
 summary: How to create a client side keep alive in JavaScript for your website
 date: "2015-07-20"
@@ -13,6 +13,7 @@ tags:
   - html
 image: windows.jpg
 ---
+
 
 {% highlight js%}
 var myAppModule = (function() {
