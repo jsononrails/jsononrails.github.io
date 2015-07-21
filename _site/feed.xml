@@ -6,8 +6,8 @@
 </description>
     <link>http://jsononrails.com/</link>
     <atom:link href="http://jsononrails.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 21 Jul 2015 21:02:33 +0000</pubDate>
-    <lastBuildDate>Tue, 21 Jul 2015 21:02:33 +0000</lastBuildDate>
+    <pubDate>Tue, 21 Jul 2015 23:57:11 +0000</pubDate>
+    <lastBuildDate>Tue, 21 Jul 2015 23:57:11 +0000</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -37,27 +37,31 @@
                 &lt;span class=&quot;nx&quot;&gt;contentType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;application/json; charset=utf-8&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
                 &lt;span class=&quot;nx&quot;&gt;dataType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;json&amp;quot;&lt;/span&gt;
             &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+            
+            &lt;span class=&quot;c1&quot;&gt;// start keep keepAliveSettings&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;refreshSession&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+            
+        &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
 
-            &lt;span class=&quot;nx&quot;&gt;refreshSession&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;refreshSession&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
 
             &lt;span class=&quot;nx&quot;&gt;myAppModule&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;keepAliveSettings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
             &lt;span class=&quot;nx&quot;&gt;clearTimeout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;myAppModule&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;keepAliveSettings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;timerX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
+    
             &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ajax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
                     &lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;myAppModule&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;keepAliveSettings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;keepAliveEndPoint&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;?c=&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;myAppModule&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;keepAliveSettings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
                     &lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;GET&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
                     &lt;span class=&quot;nx&quot;&gt;dataType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;json&amp;#39;&lt;/span&gt;
-                &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
-                &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;jqXHR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;textStatus&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                    &lt;span class=&quot;c1&quot;&gt;// log success&lt;/span&gt;
-                &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
-                &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;jqXHR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;textStatus&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                    &lt;span class=&quot;c1&quot;&gt;// failed&lt;/span&gt;
-                &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;jqXHR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;textStatus&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;c1&quot;&gt;// log success&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;jqXHR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;textStatus&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;c1&quot;&gt;// failed&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
 
             &lt;span class=&quot;nx&quot;&gt;myAppModule&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;keepAliveSettings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;timerX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;setInterval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;myAppModule&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;refreshSession&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;myAppModule&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;keepAliveSettings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;keepAliveInterval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
     &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
 
@@ -77,6 +81,27 @@
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;input&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;hidden&amp;quot;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;hid_ClientKeepAliveEndPoint&amp;quot;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;@System.Configuration.ConfigurationManager.AppSettings[&amp;quot;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ClientKeepAliveEndPoint&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;]&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;input&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;hidden&amp;quot;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;hid_ClientKeepAliveInterval&amp;quot;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;@System.Configuration.ConfigurationManager.AppSettings[&amp;quot;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ClientKeepAliveInterval&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;]&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Then include the module and kick off the keep alive.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;myApp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;myAppModule&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        
+        &lt;span class=&quot;nx&quot;&gt;myApp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+      
+    &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/script&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;How it works is the module once initialized calls the first iteration of the refreshSession function.
+This function increments a counter just for loggin purposes and clears any existing instance of the setInterval
+timer so we don&amp;#39;t end up with multiple instances on each new iteration.  We then setup our Ajax call with our
+values from our &lt;code&gt;web.config&lt;/code&gt; logging success appropriately. Finally we setInterval and tell it to call the
+refreshSession function again and assign it to timerX so we can clear it on the next pass.&lt;/p&gt;
+
+&lt;p&gt;NOTE: this example assumes you have jQuery referenced in you markup in order for this to work and call
+      document ready &lt;code&gt;$(function() {});&lt;/code&gt;&lt;/p&gt;
 </description>
         <pubDate>Mon, 20 Jul 2015 00:00:00 +0000</pubDate>
         <link>http://jsononrails.com/webdevelopment/2015/07/20/client-side-keep-alive-in-javascript.html</link>

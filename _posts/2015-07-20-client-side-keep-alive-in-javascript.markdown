@@ -45,27 +45,31 @@ var myAppModule = (function() {
                 contentType: "application/json; charset=utf-8",
                 dataType: "json"
             });
-        }
+            
+            // start keep keepAliveSettings
+            self.refreshSession();
+            
+        },
 
-            refreshSession: function() {
+        refreshSession: function() {
 
             myAppModule.App.keepAliveSettings.counter++;
             clearTimeout(myAppModule.App.keepAliveSettings.timerX);
-
+    
             $.ajax({
                     url: myAppModule.App.keepAliveSettings.keepAliveEndPoint + '?c=' + myAppModule.App.keepAliveSettings.counter,
                     type: 'GET',
                     dataType: 'json'
-                })
-                .done(function(jqXHR, textStatus) {
-                    // log success
-                })
-                .fail(function(jqXHR, textStatus) {
-                    // failed
-                });
+            })
+            .done(function(jqXHR, textStatus) {
+                // log success
+            })
+            .fail(function(jqXHR, textStatus) {
+                // failed
+            });
 
             myAppModule.App.keepAliveSettings.timerX = setInterval(myAppModule.App.refreshSession, myAppModule.App.keepAliveSettings.keepAliveInterval);
-        },
+      }
 
     };
 
@@ -90,3 +94,25 @@ Then in my main layout `.cshtml` I assigned the values of these keys to their re
 <input type="hidden" id="hid_ClientKeepAliveEndPoint" value="@System.Configuration.ConfigurationManager.AppSettings["ClientKeepAliveEndPoint"]" />
 <input type="hidden" id="hid_ClientKeepAliveInterval" value="@System.Configuration.ConfigurationManager.AppSettings["ClientKeepAliveInterval"]" />
 {% endhighlight %}
+
+Then include the module and kick off the keep alive.
+{% highlight js %}
+<script>
+    $(function() {
+      
+        var myApp = myAppModule;
+        
+        myApp.init();
+      
+    });
+</script>
+{% endhighlight %}
+
+How it works is the module once initialized calls the first iteration of the refreshSession function.
+This function increments a counter just for loggin purposes and clears any existing instance of the setInterval
+timer so we don't end up with multiple instances on each new iteration.  We then setup our Ajax call with our
+values from our `web.config` logging success appropriately. Finally we setInterval and tell it to call the
+refreshSession function again and assign it to timerX so we can clear it on the next pass.
+
+NOTE: this example assumes you have jQuery referenced in you markup in order for this to work and call
+      document ready `$(function() {});`
