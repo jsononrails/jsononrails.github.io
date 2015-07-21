@@ -1,6 +1,6 @@
 ---
 layout: post
-published: false
+published: true
 title: Client side keep alive in JavaScript
 comments: true
 summary: How to create a client side keep alive in JavaScript for your website
@@ -13,6 +13,7 @@ tags:
   - html
   - dotnet
   - csharp
+  - featured
 image: windows.jpg
 ---
 
