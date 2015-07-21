@@ -14,7 +14,7 @@ tags:
   - dotnet
   - csharp
   - featured
-image: windows.jpg
+image: /assets/images/windows.jpg
 ---
 
 
