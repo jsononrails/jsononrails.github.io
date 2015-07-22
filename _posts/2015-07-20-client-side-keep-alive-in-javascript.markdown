@@ -108,11 +108,16 @@ Then include the module and kick off the keep alive.
 </script>
 {% endhighlight %}
 
-How it works is the module once initialized calls the first iteration of the refreshSession function.
-This function increments a counter just for loggin purposes and clears any existing instance of the setInterval
-timer so we don't end up with multiple instances on each new iteration.  We then setup our Ajax call with our
-values from our `web.config` logging success appropriately. Finally we setInterval and tell it to call the
-refreshSession function again and assign it to timerX so we can clear it on the next pass.
+How it works is once the module is initialized it calls the first iteration of the `refreshSession()` function.
 
-NOTE: this example assumes you have jQuery referenced in you markup in order for this to work and call
-      document ready `$(function() {});`
+This function increments a counter just for loggin purposes and clears any existing instance of the setInterval
+timer so we don't end up with multiple instances on each new iteration.  
+
+We then setup our Ajax call with our
+values from our `web.config` logging success appropriately.
+
+Finally we setInterval and tell it to call the
+`refreshSession()` function again and assign it to timerX so we can clear it on the next pass.
+
+NOTE: this example assumes you have jQuery referenced in you markup in order for this to work and call document ready 
+`$(function() {});`
