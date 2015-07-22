@@ -22,7 +22,7 @@ Today I discovered a discrepancy  with my JavaScript code and because it was wor
 also working in Internet Explorer/Chrome as well.
 
 See the following example:
-{% highlight js %}
+{% highlight js linenos %}
 var
 	firstName = 'John',
 	lastName = 'Connor',
@@ -35,14 +35,14 @@ var
 In Firefox this seems to behave as expected. Either it doesn't care or need a key name to be defined or it smartly default names the key to the variable name and sets its value at the same time.
 
 Example:
-{% highlight js %}
+{% highlight js linenos %}
 myArray.push({ firstName: firstName, lastName: lastName, phoneNumber: phoneNumber });
 {% endhighlight %}
 	
 However in Internet Explorer/Chrome this completely fails and a null reference exception is thrown so I had to explicitly specify the key names for their respective vaule pairs on the push in order to get this to work cross browser.
 	
 See the following updated example:
-{% highlight js %}
+{% highlight js linenos %}
 var
 	firstName = 'John',
 	lastName = 'Smith',
