@@ -67,24 +67,24 @@ as a deadlock and our application began to malfunction.</p>
 <p>The solution was to update our stored procedure to include<br />
 <code>SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED</code> see below.</p>
 
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="n">USE</span> <span class="p">[</span><span class="n">YOUR_DATABASE_NAME</span><span class="p">]</span>
-
-<span class="k">GO</span>
-<span class="k">SET</span> <span class="n">ANSI_NULLS</span> <span class="k">ON</span>
-<span class="k">GO</span>
-<span class="k">SET</span> <span class="n">QUOTED_IDENTIFIER</span> <span class="k">ON</span>
-<span class="k">GO</span>
-<span class="k">ALTER</span> <span class="k">PROCEDURE</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">spS_YOUR_PROC</span><span class="p">]</span>
-    <span class="o">@</span><span class="n">Var1</span> <span class="nb">INT</span>
-<span class="k">AS</span>
-<span class="k">BEGIN</span>
-
-<span class="k">SET</span> <span class="n">TRANSACTION</span> <span class="k">ISOLATION</span> <span class="k">LEVEL</span> <span class="k">READ</span> <span class="k">UNCOMMITTED</span>
-
-    <span class="c1">-- do stuff</span>
-
-<span class="k">RETURN</span><span class="p">;</span>
-<span class="k">END</span></code></pre></div>
+<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="lineno"> 1</span> <span class="n">USE</span> <span class="p">[</span><span class="n">YOUR_DATABASE_NAME</span><span class="p">]</span>
+<span class="lineno"> 2</span> 
+<span class="lineno"> 3</span> <span class="k">GO</span>
+<span class="lineno"> 4</span> <span class="k">SET</span> <span class="n">ANSI_NULLS</span> <span class="k">ON</span>
+<span class="lineno"> 5</span> <span class="k">GO</span>
+<span class="lineno"> 6</span> <span class="k">SET</span> <span class="n">QUOTED_IDENTIFIER</span> <span class="k">ON</span>
+<span class="lineno"> 7</span> <span class="k">GO</span>
+<span class="lineno"> 8</span> <span class="k">ALTER</span> <span class="k">PROCEDURE</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">spS_YOUR_PROC</span><span class="p">]</span>
+<span class="lineno"> 9</span>  <span class="o">@</span><span class="n">Var1</span> <span class="nb">INT</span>
+<span class="lineno">10</span> <span class="k">AS</span>
+<span class="lineno">11</span> <span class="k">BEGIN</span>
+<span class="lineno">12</span> 
+<span class="lineno">13</span> <span class="k">SET</span> <span class="n">TRANSACTION</span> <span class="k">ISOLATION</span> <span class="k">LEVEL</span> <span class="k">READ</span> <span class="k">UNCOMMITTED</span>
+<span class="lineno">14</span> 
+<span class="lineno">15</span>  <span class="c1">-- do stuff</span>
+<span class="lineno">16</span> 
+<span class="lineno">17</span> <span class="k">RETURN</span><span class="p">;</span>
+<span class="lineno">18</span> <span class="k">END</span></code></pre></div>
 
 <p>This allows for uncommitted reading of all tables queried within the stored procedure. If you need more granularity then I&#39;d suggest using <code>NOLOCK</code> 
 only to the table(s) in question individually.</p>
@@ -93,51 +93,51 @@ only to the table(s) in question individually.</p>
 
 <p><em>The following is C# code</em></p>
 
-<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">public</span> <span class="kt">bool</span> <span class="nf">MyFunction</span><span class="p">(</span><span class="kt">var</span> <span class="n">var1</span><span class="p">,</span> <span class="kt">var</span> <span class="n">var2</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="kt">int</span> <span class="n">retryCount</span> <span class="p">=</span> <span class="m">3</span><span class="p">;</span>
-    <span class="kt">bool</span> <span class="n">success</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
-    
-    <span class="k">try</span>
-    <span class="p">{</span>
-        <span class="k">while</span> <span class="p">(</span><span class="n">retryCount</span> <span class="p">&gt;</span> <span class="m">0</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">success</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="c1">// do database stuff</span>
-            
-            <span class="c1">// on success</span>
-            <span class="n">success</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">catch</span> <span class="p">(</span><span class="n">SqlException</span> <span class="n">e</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Number</span> <span class="p">==</span> <span class="m">1205</span><span class="p">)</span> <span class="c1">// SQL deadlock exception</span>
-        <span class="p">{</span>
-            <span class="c1">// log exceptions</span>
-            
-            <span class="c1">// decrement retry count</span>
-            <span class="n">retryCount</span><span class="p">--;</span>
-        <span class="p">}</span>
-        <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Number</span> <span class="p">==</span> <span class="p">-</span><span class="m">2</span><span class="p">)</span> <span class="c1">// SQL timeout exception</span>
-        <span class="p">{</span>
-            <span class="c1">// log exceptions</span>
-            
-            <span class="c1">// decrement retry count</span>
-            <span class="n">retryCount</span><span class="p">--;</span>
-        <span class="p">}</span>
-    
-        <span class="c1">// log exception</span>
-        
-        <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="c1">// log exception</span>
-        
-        <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
-    <span class="p">}</span>
-    
-    <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
-<span class="p">}</span></code></pre></div>
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="lineno"> 1</span> <span class="k">public</span> <span class="kt">bool</span> <span class="nf">MyFunction</span><span class="p">(</span><span class="kt">var</span> <span class="n">var1</span><span class="p">,</span> <span class="kt">var</span> <span class="n">var2</span><span class="p">)</span>
+<span class="lineno"> 2</span> <span class="p">{</span>
+<span class="lineno"> 3</span>     <span class="kt">int</span> <span class="n">retryCount</span> <span class="p">=</span> <span class="m">3</span><span class="p">;</span>
+<span class="lineno"> 4</span>     <span class="kt">bool</span> <span class="n">success</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+<span class="lineno"> 5</span>     
+<span class="lineno"> 6</span>     <span class="k">try</span>
+<span class="lineno"> 7</span>     <span class="p">{</span>
+<span class="lineno"> 8</span>      <span class="k">while</span> <span class="p">(</span><span class="n">retryCount</span> <span class="p">&gt;</span> <span class="m">0</span> <span class="p">&amp;&amp;</span> <span class="p">!</span><span class="n">success</span><span class="p">)</span>
+<span class="lineno"> 9</span>      <span class="p">{</span>
+<span class="lineno">10</span>          <span class="c1">// do database stuff</span>
+<span class="lineno">11</span>          
+<span class="lineno">12</span>          <span class="c1">// on success</span>
+<span class="lineno">13</span>          <span class="n">success</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+<span class="lineno">14</span>      <span class="p">}</span>
+<span class="lineno">15</span>     <span class="p">}</span>
+<span class="lineno">16</span>     <span class="k">catch</span> <span class="p">(</span><span class="n">SqlException</span> <span class="n">e</span><span class="p">)</span>
+<span class="lineno">17</span>     <span class="p">{</span>
+<span class="lineno">18</span>      <span class="k">if</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Number</span> <span class="p">==</span> <span class="m">1205</span><span class="p">)</span> <span class="c1">// SQL deadlock exception</span>
+<span class="lineno">19</span>      <span class="p">{</span>
+<span class="lineno">20</span>          <span class="c1">// log exceptions</span>
+<span class="lineno">21</span>          
+<span class="lineno">22</span>          <span class="c1">// decrement retry count</span>
+<span class="lineno">23</span>          <span class="n">retryCount</span><span class="p">--;</span>
+<span class="lineno">24</span>      <span class="p">}</span>
+<span class="lineno">25</span>      <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Number</span> <span class="p">==</span> <span class="p">-</span><span class="m">2</span><span class="p">)</span> <span class="c1">// SQL timeout exception</span>
+<span class="lineno">26</span>      <span class="p">{</span>
+<span class="lineno">27</span>          <span class="c1">// log exceptions</span>
+<span class="lineno">28</span>          
+<span class="lineno">29</span>          <span class="c1">// decrement retry count</span>
+<span class="lineno">30</span>          <span class="n">retryCount</span><span class="p">--;</span>
+<span class="lineno">31</span>      <span class="p">}</span>
+<span class="lineno">32</span>     
+<span class="lineno">33</span>      <span class="c1">// log exception</span>
+<span class="lineno">34</span>      
+<span class="lineno">35</span>      <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+<span class="lineno">36</span>     <span class="p">}</span>
+<span class="lineno">37</span>     <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+<span class="lineno">38</span>     <span class="p">{</span>
+<span class="lineno">39</span>      <span class="c1">// log exception</span>
+<span class="lineno">40</span>      
+<span class="lineno">41</span>      <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+<span class="lineno">42</span>     <span class="p">}</span>
+<span class="lineno">43</span>     
+<span class="lineno">44</span>     <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+<span class="lineno">45</span> <span class="p">}</span></code></pre></div>
 
         </section>
         <footer class="post-footer">

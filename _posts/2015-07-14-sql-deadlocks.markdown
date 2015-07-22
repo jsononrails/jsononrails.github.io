@@ -15,7 +15,7 @@ as a deadlock and our application began to malfunction.
 The solution was to update our stored procedure to include<br />
 `SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED` see below.
 
-{% highlight sql %}
+{% highlight sql linenos %}
 USE [YOUR_DATABASE_NAME]
 
 GO
@@ -42,7 +42,7 @@ only to the table(s) in question individually.
 Then in our database repository where we call the stored procedure I wrap the call in a `try catch` to enforce a retry if the database throws a `deadlock` or `timeout` exception
 
 <em>The following is C# code</em>
-{% highlight csharp %}
+{% highlight csharp linenos %}
 public bool MyFunction(var var1, var var2)
 {
     int retryCount = 3;
