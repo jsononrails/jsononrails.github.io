@@ -63,7 +63,62 @@
           <a name="topofpage"></a>
           <p>Sometimes you may find yourself in need of a keep alive to maintain an active session or a connection from your client back to your server. Today I came across a need for this in one of our projects below is my implementation of a client to server keep alive using Ajax.</p>
 
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">myAppModule</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><code class="language-js" data-lang="js"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56</code></pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">myAppModule</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="p">{</span>
         <span class="nx">keepAliveSettings</span><span class="o">:</span> <span class="p">{</span>
             <span class="nx">counter</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
@@ -118,22 +173,39 @@
         <span class="nx">App</span><span class="o">:</span> <span class="nx">app</span>
     <span class="p">};</span>
 
-<span class="p">}());</span></code></pre></div>
+<span class="p">}());</span>
+</pre></div>
+</td></tr></table>
 
 <p>I store two values within hidden fields called <code>hid_ClientKeepAliveInterval</code> and <code>hid_ClientKeepAliveEndPoint</code> these store the interval to repeat the keep alive and the endpoint to our server controller action to hit. Typically I store these as Application Keys in the <code>web.config</code>.</p>
 
-<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="c">&lt;!-- Client side keep alive --&gt;</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><code class="language-xml" data-lang="xml">1
+2
+3</code></pre></div></td><td class="code"><div class="highlight"><pre><span class="c">&lt;!-- Client side keep alive --&gt;</span>
 <span class="nt">&lt;add</span> <span class="na">key=</span><span class="s">&quot;ClientKeepAliveEndPoint&quot;</span> <span class="na">value=</span><span class="s">&quot;http://localhost:3000/KeepAlive/ClientKeepAlive/&quot;</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;add</span> <span class="na">key=</span><span class="s">&quot;ClientKeepAliveInterval&quot;</span> <span class="na">value=</span><span class="s">&quot;30000&quot;</span><span class="nt">/&gt;</span> <span class="c">&lt;!-- milleseconds, 30 seconds --&gt;</span></code></pre></div>
+<span class="nt">&lt;add</span> <span class="na">key=</span><span class="s">&quot;ClientKeepAliveInterval&quot;</span> <span class="na">value=</span><span class="s">&quot;30000&quot;</span><span class="nt">/&gt;</span> <span class="c">&lt;!-- milleseconds, 30 seconds --&gt;</span>
+</pre></div>
+</td></tr></table>
 
 <p>Then in my main layout <code>.cshtml</code> I assigned the values of these keys to their respective HTML hidden inputs.</p>
 
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;hidden&quot;</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;hid_ClientKeepAliveEndPoint&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;@System.Configuration.ConfigurationManager.AppSettings[&quot;</span><span class="nx">ClientKeepAliveEndPoint</span><span class="s2">&quot;]&quot;</span> <span class="o">/&gt;</span>
-<span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;hidden&quot;</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;hid_ClientKeepAliveInterval&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;@System.Configuration.ConfigurationManager.AppSettings[&quot;</span><span class="nx">ClientKeepAliveInterval</span><span class="s2">&quot;]&quot;</span> <span class="o">/&gt;</span></code></pre></div>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><code class="language-js" data-lang="js">1
+2</code></pre></div></td><td class="code"><div class="highlight"><pre><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;hidden&quot;</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;hid_ClientKeepAliveEndPoint&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;@System.Configuration.ConfigurationManager.AppSettings[&quot;</span><span class="nx">ClientKeepAliveEndPoint</span><span class="s2">&quot;]&quot;</span> <span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;hidden&quot;</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;hid_ClientKeepAliveInterval&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;@System.Configuration.ConfigurationManager.AppSettings[&quot;</span><span class="nx">ClientKeepAliveInterval</span><span class="s2">&quot;]&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</td></tr></table>
 
 <p>Then include the module and kick off the keep alive.</p>
 
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><code class="language-js" data-lang="js">1
+2
+3
+4
+5
+6
+7
+8
+9</code></pre></div></td><td class="code"><div class="highlight"><pre><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
     <span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       
         <span class="kd">var</span> <span class="nx">myApp</span> <span class="o">=</span> <span class="nx">myAppModule</span><span class="p">;</span>
@@ -141,7 +213,9 @@
         <span class="nx">myApp</span><span class="p">.</span><span class="nx">init</span><span class="p">();</span>
       
     <span class="p">});</span>
-<span class="o">&lt;</span><span class="err">/script&gt;</span></code></pre></div>
+<span class="o">&lt;</span><span class="err">/script&gt;</span>
+</pre></div>
+</td></tr></table>
 
 <p>How it works is once the module is initialized it calls the first iteration of the <code>refreshSession()</code> function.</p>
 
