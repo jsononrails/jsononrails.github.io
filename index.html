@@ -57,6 +57,8 @@ layout: default
 
     <div class="cf frame">
       {% for post in paginator.posts %}
+        {% if post.tags contains 'featured' %}
+        {% else %}
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting" role="article">
           <div class="article-item">
             <header class="post-header">
@@ -71,6 +73,7 @@ layout: default
             </div>
           </div>
         </article>
+        {% endif %}
       {% endfor %}
     </div>
 
