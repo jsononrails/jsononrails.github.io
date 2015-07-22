@@ -21,7 +21,7 @@ image: /assets/images/windows.jpg
 
 Sometimes you may find yourself in need of a keep alive to maintain an active session or a connection from your client back to your server. Today I came across a need for this in one of our projects below is my implementation of a client to server keep alive using Ajax.
 
-{% highlight js linenos=table %}
+{% highlight js linenos %}
 var myAppModule = (function() {
     var app = {
         keepAliveSettings: {
@@ -82,7 +82,7 @@ var myAppModule = (function() {
 
 I store two values within hidden fields called `hid_ClientKeepAliveInterval` and `hid_ClientKeepAliveEndPoint` these store the interval to repeat the keep alive and the endpoint to our server controller action to hit. Typically I store these as Application Keys in the `web.config`.
 
-{% highlight xml  linenos=table %}
+{% highlight xml  linenos %}
 <!-- Client side keep alive -->
 <add key="ClientKeepAliveEndPoint" value="http://localhost:3000/KeepAlive/ClientKeepAlive/"/>
 <add key="ClientKeepAliveInterval" value="30000"/> <!-- milleseconds, 30 seconds -->
@@ -90,13 +90,13 @@ I store two values within hidden fields called `hid_ClientKeepAliveInterval` and
 
 Then in my main layout `.cshtml` I assigned the values of these keys to their respective HTML hidden inputs.
 
-{% highlight js  linenos=table %}
+{% highlight js  linenos %}
 <input type="hidden" id="hid_ClientKeepAliveEndPoint" value="@System.Configuration.ConfigurationManager.AppSettings["ClientKeepAliveEndPoint"]" />
 <input type="hidden" id="hid_ClientKeepAliveInterval" value="@System.Configuration.ConfigurationManager.AppSettings["ClientKeepAliveInterval"]" />
 {% endhighlight %}
 
 Then include the module and kick off the keep alive.
-{% highlight js  linenos=table %}
+{% highlight js  linenos %}
 <script>
     $(function() {
       
