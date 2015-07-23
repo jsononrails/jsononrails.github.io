@@ -6,8 +6,8 @@
 </description>
     <link>http://jsononrails.com/</link>
     <atom:link href="http://jsononrails.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 23 Jul 2015 16:05:14 +0000</pubDate>
-    <lastBuildDate>Thu, 23 Jul 2015 16:05:14 +0000</lastBuildDate>
+    <pubDate>Thu, 23 Jul 2015 22:49:53 +0000</pubDate>
+    <lastBuildDate>Thu, 23 Jul 2015 22:49:53 +0000</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -118,9 +118,9 @@ values from our &lt;code&gt;web.config&lt;/code&gt; logging success appropriatel
         
         <category>html</category>
         
-        <category>dotnet</category>
+        <category>dot net</category>
         
-        <category>csharp</category>
+        <category>c sharp</category>
         
         <category>featured</category>
         

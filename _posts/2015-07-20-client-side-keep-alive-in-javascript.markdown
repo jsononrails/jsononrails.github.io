@@ -11,8 +11,8 @@ tags:
   - web
   - javascript
   - html
-  - dotnet
-  - csharp
+  - dot net
+  - c sharp
   - featured
 image: /assets/images/windows.jpg
 ---
