@@ -14,55 +14,71 @@ tags:
 image: windows.jpg
 ---
 
-{% highlight js%}
-var myAppModule = (function() {
-	var 
-        app = {
+{% highlight csharp%}
+using System.Threading;
+using System.Net;
 
-            keepAliveSettings: {
-                counter: 0,
-                timerX: null,
-				keepAliveInterval: parseInt($('#hid_ClientKeepAliveInterval').val()),
-				keepAliveEndPoint: $('#hid_ClientKeepAliveEndPoint').val()
-            },
+ public class MvcApplication : System.Web.HttpApplication
+    {
+        static Thread keepAliveThread = new Thread(KeepAlive);
 
-            self: null,
-			
-			/*** function to initialize module ***/
-            init: function () {
-                
-				// mantain reference to module scope of this
-                self = this;
-				
-                // setup ajax
-                $.ajaxSetup({ type: "POST", contentType: "application/json; charset=utf-8", dataType: "json" });
-			}
-			
-			refreshSession: function() {
-                
-				myAppModule.App.keepAliveSettings.counter++;
-                clearTimeout(myAppModule.App.keepAliveSettings.timerX);
 
-                 $.ajax({
-                    url: myAppModule.App.keepAliveSettings.keepAliveEndPoint + '?c=' + myAppModule.App.keepAliveSettings.counter,
-                    type: 'GET',
-                    dataType: 'json'
-                })
-                .done(function(jqXHR, textStatus) { 
-                    // log success
-                })
-                .fail(function(jqXHR, textStatus) {
-                    // failed
-                });
+  
+  protected void Application_Start()
+        {
+            versionNumber = NSVersionInfo.VersionInfo.VersionString;
 
-                myAppModule.App.keepAliveSettings.timerX = setInterval(myAppModule.App.refreshSession, myAppModule.App.keepAliveSettings.keepAliveInterval);
-            },
-			
-		};
-	
-	return {
-        App: app
-    };
+            if (bool.Parse(ConfigurationManager.AppSettings["EnableServerToServerKeepAlive"]))
+            {
+                // start server to server keep alive
+                keepAliveThread.Start();
+            }
+        }
+  protected void Application_End()
+        {
+            if (bool.Parse(ConfigurationManager.AppSettings["EnableServerToServerKeepAlive"]))
+            {
+                // About server to server keep alive
+                keepAliveThread.Abort();
+            }
 
-}());
+         
+        }
+   /// <summary>
+        /// Server to Server keep alive
+        /// </summary>
+        static void KeepAlive()
+        {
+            while (true)
+            {
+                try
+                {
+                    string url = ConfigurationManager.AppSettings["ServerKeepAliveEndPoint"] + "?c=" + Guid.NewGuid().ToString().Replace("-", "");
+
+                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+                    if (response.StatusCode != HttpStatusCode.OK)
+                        EventLogger.GetInstance().LogEvent(SEVERITY.Error, "MvcApplication:KeepAlive() server to server keep alive failed, HttpResponse code: " + response.StatusCode);
+                    else
+                        EventLogger.GetInstance().LogEvent(SEVERITY.Information, "MvcApplication:KeepAlive() server to server keep alive succeeded, HttpResponse code: " + response.StatusCode);
+
+                    System.Threading.Thread.Sleep(int.Parse(ConfigurationManager.AppSettings["ServerKeepAliveInterval"]));
+                }
+                catch (WebException ex)
+                {
+                    EventLogger.GetInstance().LogEvent(SEVERITY.Error, "MvcApplication:KeepAlive() server to server keep alive failed: " + ex.Message + " " + ex.InnerException);
+                    break;
+                }
+                catch (ThreadAbortException ex)
+                {
+                    EventLogger.GetInstance().LogEvent(SEVERITY.Error, "MvcApplication:KeepAlive() server to server keep alive failed: " + ex.Message + " " + ex.InnerException);
+                    break;
+                }
+            }
+        }
+        
+        
+        
+        // do this in Global.asax.cs
 {% endhighlight %}
