@@ -2,7 +2,7 @@
 layout: page
 title: About
 permalink: /about/
-image: /assets/images/ruby.jpg
+image: /assets/images/rails.jpg
 ---
 
 >I am a Programmer Analyst and an Open Source Enthusiast with expeirence in the follwing: HTML5 Game Development, C#, Ruby, Javascript, SQL, Swift, Node.js
