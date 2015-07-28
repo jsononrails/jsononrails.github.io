@@ -8,6 +8,7 @@ image: /assets/images/windows.jpg
 summary: How to deal with SQL deadlocks
 comments: true
 published: true
+postnumber: 1
 ---
 Recently while working on a real time web application at work we discovered that a select query in one stored procedure was executing at the same time another was doing and insert/update to the same table. This of course created a situation known 
 as a deadlock and our application began to malfunction.

@@ -267,6 +267,14 @@ body {
     border-bottom: 1px solid #f2f2f0; }
     .content article:last-child {
       border-bottom: 0px; }
+    .content article .post-number {
+      letter-spacing: -0.02em;
+      font-weight: 700;
+      font-style: normal;
+      display: block;
+      font-size: 20px;
+      line-height: 1.1;
+      margin: 0 0; }
     .content article .post-title {
       letter-spacing: -0.02em;
       font-weight: 700;
