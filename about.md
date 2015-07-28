@@ -4,9 +4,9 @@ title: About
 permalink: /about/
 ---
 
->Programmer Analyst: HTML5 Game Development, C++, DirectX, OpenGL, WebGL, Objective C, C#, PHP, Ruby, Python, Javascript, SQL, iOS, Rails, Django, Yii, Laravel, Java, Coldfusion, Node.js, MySQL, Postgresql, SQL Server, Umbraco
-
-> - 8 years of software devlopment experience.
+>I'm a Programmer Analyst and Open Source Enthusiast with expeirence in the follwing: HTML5 Game Development, C#, Ruby, Javascript, SQL, Swift, Node.js
+> ## Credentials
+> - 9 years of software devlopment experience.
 > - Visual Studio 2013 ALM Certification
 > - Microsoft Certified Professional Developer
 > - ITIL v3 Foundations Certified
