@@ -2,6 +2,7 @@
 layout: page
 title: About
 permalink: /about/
+image: /assets/images/apple.jpg
 ---
 
 >I'm a Programmer Analyst and Open Source Enthusiast with expeirence in the follwing: HTML5 Game Development, C#, Ruby, Javascript, SQL, Swift, Node.js
