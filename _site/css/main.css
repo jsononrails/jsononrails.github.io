@@ -274,7 +274,8 @@ body {
       display: block;
       font-size: 20px;
       line-height: 1.1;
-      margin: 0 0; }
+      margin: 0 0;
+      margin-bottom: 15px; }
     .content article .post-title {
       letter-spacing: -0.02em;
       font-weight: 700;
