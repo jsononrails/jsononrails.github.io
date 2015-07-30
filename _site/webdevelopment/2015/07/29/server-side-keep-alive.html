@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <!-- (1) Optimize for mobile versions: http://goo.gl/EOpFl -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- (1) force latest IE rendering engine: bit.ly/1c8EiC9 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Json On Rails - Server Side Keep Alive</title>
+  <meta name="description" content="Programmer Analyst, my documented journey
+" />
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <link rel="canonical" href="http://jsononrails.com/webdevelopment/2015/07/29/server-side-keep-alive.html">
+
+  <link rel="shortcut icon" href="/assets/images/favicon.ico">
+<!--  <link rel="stylesheet" href=""> -->
+  <link rel="stylesheet" href="http://brick.a.ssl.fastly.net/Linux+Libertine:400,400i,700,700i/Open+Sans:400,400i,700,700i">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
+  <link rel="stylesheet" type="text/css" media="print" href="/css/print.css" />
+</head>
+
+  <body itemscope itemtype="http://schema.org/Article">
+    <!-- header start -->
+
+<a href="http://jsononrails.com" class="logo-readium"><span class="logo" style="background-image: url(/assets/images/white_umb.png)"></span></a>
+
+<!-- header end -->
+
+    <main class="content" role="main">
+      <article class="post">
+        
+        <div class="article-image">
+          <div class="post-image-image" style="background-image: url(/assets/images/windows.jpg)">
+            Article Image
+          </div>
+          <div class="post-meta">
+            <h1 class="post-title">Server Side Keep Alive</h1>
+            <h2 class="post-number">Post #4</h2>
+            <div class="cf post-meta-text">
+              <div class="author-image" style="background-image: url(/assets/images/author.jpg)">Blog Logo</div>
+              <h4 class="author-name" itemprop="author" itemscope itemtype="http://schema.org/Person">Jason McBride</h4>
+              on
+              <time datetime="2015-07-29 00:00">29 Jul 2015</time>
+              <br /><small>Tags:  <a href="/tags/web" title="View posts tagged with &quot;web&quot;"><u>web</u></a>     <a href="/tags/dot net" title="View posts tagged with &quot;dot net&quot;"><u>dot net</u></a>     <a href="/tags/c sharp" title="View posts tagged with &quot;c sharp&quot;"><u>c sharp</u></a>     <a href="/tags/featured" title="View posts tagged with &quot;featured&quot;"><u>featured</u></a>    </small>
+            </div>
+            <div style="text-align:center">
+              <a href="#topofpage" class="topofpage"><i class="fa fa-angle-down"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <section class="post-content">
+          <div class="post-reading">
+            <span class="post-reading-time"></span> read
+          </div>
+          <a name="topofpage"></a>
+          <p>In Post #3 I showed how to create a client to server keep alive using JavaScript and jQuery.
+In this post I will show how I implemented a server side keep alive to maintain an active session for
+a web application where the client may be inactive for a extended period of time.</p>
+
+<p>This example is written using C# and .Net MVC add the following to your <code>Global.asax</code></p>
+
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">using</span> <span class="nn">System.Threading</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Net</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">MvcApplication</span> <span class="p">:</span> <span class="n">System</span><span class="p">.</span><span class="n">Web</span><span class="p">.</span><span class="n">HttpApplication</span>
+<span class="p">{</span>
+    <span class="k">static</span> <span class="n">Thread</span> <span class="n">keepAliveThread</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="p">(</span><span class="n">KeepAlive</span><span class="p">);</span>
+
+    <span class="k">protected</span> <span class="k">void</span> <span class="nf">Application_Start</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="kt">bool</span><span class="p">.</span><span class="n">Parse</span><span class="p">(</span><span class="n">ConfigurationManager</span><span class="p">.</span><span class="n">AppSettings</span><span class="p">[</span><span class="s">&quot;EnableServerToServerKeepAlive&quot;</span><span class="p">]))</span>
+        <span class="p">{</span>
+            <span class="c1">// start server to server keep alive</span>
+            <span class="n">keepAliveThread</span><span class="p">.</span><span class="n">Start</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    
+    <span class="k">protected</span> <span class="k">void</span> <span class="nf">Application_End</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="kt">bool</span><span class="p">.</span><span class="n">Parse</span><span class="p">(</span><span class="n">ConfigurationManager</span><span class="p">.</span><span class="n">AppSettings</span><span class="p">[</span><span class="s">&quot;EnableServerToServerKeepAlive&quot;</span><span class="p">]))</span>
+        <span class="p">{</span>
+            <span class="c1">// abort server to server keep alive</span>
+            <span class="n">keepAliveThread</span><span class="p">.</span><span class="n">Abort</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+   
+    <span class="c1">/// &lt;summary&gt;</span>
+    <span class="c1">/// Server to Server keep alive</span>
+    <span class="c1">/// &lt;/summary&gt;</span>
+    <span class="k">static</span> <span class="k">void</span> <span class="nf">KeepAlive</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">while</span> <span class="p">(</span><span class="k">true</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">try</span>
+            <span class="p">{</span>
+                <span class="kt">string</span> <span class="n">url</span> <span class="p">=</span> <span class="n">ConfigurationManager</span><span class="p">.</span><span class="n">AppSettings</span><span class="p">[</span><span class="s">&quot;ServerKeepAliveEndPoint&quot;</span><span class="p">]</span> <span class="p">+</span> <span class="s">&quot;?c=&quot;</span> <span class="p">+</span> <span class="n">Guid</span><span class="p">.</span><span class="n">NewGuid</span><span class="p">().</span><span class="n">ToString</span><span class="p">().</span><span class="n">Replace</span><span class="p">(</span><span class="s">&quot;-&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">);</span>
+
+                <span class="n">HttpWebRequest</span> <span class="n">request</span> <span class="p">=</span> <span class="p">(</span><span class="n">HttpWebRequest</span><span class="p">)</span><span class="n">WebRequest</span><span class="p">.</span><span class="n">Create</span><span class="p">(</span><span class="n">url</span><span class="p">);</span>
+                <span class="n">HttpWebResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="p">(</span><span class="n">HttpWebResponse</span><span class="p">)</span><span class="n">request</span><span class="p">.</span><span class="n">GetResponse</span><span class="p">();</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">StatusCode</span> <span class="p">!=</span> <span class="n">HttpStatusCode</span><span class="p">.</span><span class="n">OK</span><span class="p">)</span>
+                    <span class="c1">// log failed keep alive</span>
+                <span class="k">else</span>
+                    <span class="c1">// log successful keep alive</span>
+                    
+                    <span class="n">System</span><span class="p">.</span><span class="n">Threading</span><span class="p">.</span><span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="kt">int</span><span class="p">.</span><span class="n">Parse</span><span class="p">(</span><span class="n">ConfigurationManager</span><span class="p">.</span><span class="n">AppSettings</span><span class="p">[</span><span class="s">&quot;ServerKeepAliveInterval&quot;</span><span class="p">]));</span>
+            <span class="p">}</span>
+            <span class="k">catch</span> <span class="p">(</span><span class="n">WebException</span> <span class="n">ex</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="c1">// log exception</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">catch</span> <span class="p">(</span><span class="n">ThreadAbortException</span> <span class="n">ex</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="c1">// log exception</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+
+<p>First I import the following namespaces <code>System.Threading</code> and <code>System.Net</code> to support threading and HttpRequests.
+Then I create a new thread and pass in my delegate method to be used <code>static Thread keepAliveThread = new Thread(KeepAlive);</code></p>
+
+<p>In <code>Application_Start</code> I check an application variable <code>EnableServerToServerKeepAlive</code> to see if the application should
+be using the keep alive. If it is <code>true</code> I kick off the thread by calling <code>keepAliveThread.Start();</code> this will call into 
+my delegate method <code>KeepAlive</code> mentioned earlier.</p>
+
+<p>First thing I do here is setup a an indefinite loop this will be used to repeat our process of sending a request to the server.
+I then get the url for the keep alive from the <code>web.config</code> in this case it is to a controller and action <code>/KeepALive/Ping</code> within the app itself that 
+just returns a value of <code>true</code>. I also create two objects for handling the HttpRequest to the server and 
+the HttpResponse.</p>
+
+<p><code>HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);</code> and <code>HttpWebResponse response = (HttpWebResponse)request.GetResponse();</code>
+the <code>(HttpWebRequest)WebRequest.Create(url);</code> method takes a parameter for the url I retrieved earlier from the <code>web.config</code> and creates a HttpRequest to that endpoint.
+<code>(HttpWebResponse)request.GetResponse();</code> will get the response back from the request where I can then check its success by investigating
+its status code <code>if (response.StatusCode != HttpStatusCode.OK)</code>.</p>
+
+<p>If the request is successful I sleep the thread based on a value stored in a variable <code>ServerKeepAliveInterval</code> in the web.config
+this will delay the next iteration where the process then starts over again.</p>
+
+<p>Something to note, on my first initial pass I attempted the above using <code>System.Net.NetworkInformation.Ping</code> but because my application
+is using a port other than 80 my attempt failed. <code>Ping</code> doesn&#39;t support port numbers and for security reasons leaving our apps on a default port of 80 is not an option
+because of this I had to revamp my solution as written above.</p>
+
+        </section>
+        <footer class="post-footer">
+          <section class="share">
+            
+              
+                <a class="icon-twitter" href="http://twitter.com/share?text=Server+Side+Keep+Alive&amp;url=http://jsononrails.com/webdevelopment/2015/07/29/server-side-keep-alive"
+                  onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+                <i class="fa fa-twitter"></i><span class="hidden">twitter</span>
+                </a>
+              
+            
+              
+                <a class="icon-facebook" href="https://www.facebook.com/sharer.php?t=Server+Side+Keep+Alive&amp;u=http://jsononrails.com/webdevelopment/2015/07/29/server-side-keep-alive"
+                  onclick="window.open(this.href, 'facebook-share', 'width=550,height=255');return false;">
+                <i class="fa fa-facebook"></i><span class="hidden">facebook</span>
+                </a>
+              
+            
+              
+            
+              
+                <a class="icon-google-plus" href="https://plus.google.com/share?title=Server+Side+Keep+Alive&amp;url=http://jsononrails.com/webdevelopment/2015/07/29/server-side-keep-alive"
+                  onclick="window.open(this.href, 'google-plus-share', 'width=550,height=255');return false;">
+                <i class="fa fa-google-plus"></i><span class="hidden">google-plus</span>
+                </a>
+              
+            
+            
+          <div id="disqus_thread"></div>
+            <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES * * */
+                var disqus_shortname = 'jsononrails';
+                
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+          
+          </section>
+        </footer>
+        <div class="bottom-teaser cf">
+          <div class="isLeft">
+            <h5 class="index-headline featured"><span>Written by</span></h5>
+            <section class="author">
+              <div class="author-image" style="background-image: url(/assets/images/author.jpg)">Blog Logo</div>
+              <h4>Jason McBride</h4>
+              <p class="bio"></p>
+              <hr>
+              <p class="published">Published <time datetime="2015-07-29 00:00">29 Jul 2015</time></p>
+            </section>
+          </div>
+          
+          <div class="isRight">
+            <h5 class="index-headline featured"><span>Supported by</span></h5>
+            <footer class="site-footer">
+              <section class="poweredby">Proudly published with <a href="http://jekyllrb.com"> Jekyll</a></section>
+              <a class="subscribe" href="/feed.xml"> <span class="tooltip"> <i class="fa fa-rss"></i> You should subscribe to my feed.</span></a>
+              <div class="inner">
+                <section class="copyright">All content copyright <a href="/">Json on Rails</a> &copy; 2015<br>All rights reserved.</section>
+              </div>
+            </footer>
+          </div>
+        </div>
+      </article>
+    </main>
+    <div class="bottom-closer">
+      <div class="background-closer-image"  style="background-image: url(/assets/images/cover.jpg)">
+        Image
+      </div>
+      <div class="inner">
+        <h1 class="blog-title">Json On Rails</h1>
+        <h2 class="blog-description">Programmer Analyst, my documented journey
+</h2>
+        <a href="/" class="btn">Home</a>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/assets/js/index.js"></script>
+<script type="text/javascript" src="/assets/js/readingTime.min.js"></script>
+<script>
+(function ($) {
+  "use strict";
+  $(document).ready(function(){
+
+    var $window = $(window),
+    $image = $('.post-image-image, .teaserimage-image'),
+    $umb = $('.logo');
+      $window.on('scroll', function() {
+        var top = $window.scrollTop();
+
+        if (top < 0 || top > 1500) { return; }
+        $image
+          .css('transform', 'translate3d(0px, '+top/3+'px, 0px)')
+          .css('opacity', 1-Math.max(top/700, 0));
+		$umb.css('opacity', 1-Math.max(top/410, 0));
+		
+		if(top == 402) 
+			$umb.css('background-image', 'url(/assets/images/black_umb.png)').css('opacity', 0);
+		if(top > 402) {
+			
+			$umb.css('background-image', 'url(/assets/images/black_umb.png)').css('opacity', 0+Math.max(top/700, 0));
+		}
+		else
+			$umb.css('background-image', 'url(/assets/images/white_umb.png)');
+
+      });
+      $window.trigger('scroll');
+
+      var height = $('.article-image').height();
+      $('.post-content').css('padding-top', height + 'px');
+
+      $('a[href*=#]:not([href=#])').click(function() {
+        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
+         && location.hostname == this.hostname) {
+          var target = $(this.hash);
+          target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+          if (target.length) {
+            $('html,body').animate({ scrollTop: target.offset().top }, 500);
+            return false;
+          }
+        }
+      });
+
+  });
+}(jQuery));
+</script>
+
+
+  </body>
+</html>
