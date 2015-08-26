@@ -62,4 +62,13 @@ RETURN;
 END
 {% endhighlight %}
 
-The only caveat is that you need to add this proc to any database in which you wish to run the search.
+The only caveat is that you need to add this proc to any database in which you wish to run the search, but then you can execute
+the search anytime you want by running the following SQL.SQL
+
+{% highlight sql linenos %}
+USE YOUR_DATABASE_NAME;
+
+GO
+EXEC [spS_UTIL_SEARCH_TABLES_AND_PROCS] 'someword'
+GO
+{% endhighlight %}
