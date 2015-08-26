@@ -11,7 +11,6 @@ tags:
   - web
   - dot net
   - c sharp
-  - featured
 image: /assets/images/windows.jpg
 postnumber: 4
 ---
