@@ -16,9 +16,11 @@ postnumber: 5
 
 Often I find myself working on large databases accross multiple projects and I start forgetting where certain things are.
 After having this occur multiple times I decided to look into searching the database for a keyword to see which tables or stored procedures
-that item may exist in.  There are many resources for this on using T-SQL, my two favorite links are:
-[SQL SERVER – 2005 – Search Stored Procedure Code – Search Stored Procedure Text]http://blog.sqlauthority.com/2007/09/03/sql-server-2005-search-stored-procedure-code-search-stored-procedure-text/ and
-[SQL SERVER – Query to Find Column From All Tables of Database]http://blog.sqlauthority.com/2008/08/06/sql-server-query-to-find-column-from-all-tables-of-database/
+that item may exist in.  
+
+There are many resources for this on using T-SQL, my two favorite links are:
+[SQL SERVER – 2005 – Search Stored Procedure Code – Search Stored Procedure Text](http://blog.sqlauthority.com/2007/09/03/sql-server-2005-search-stored-procedure-code-search-stored-procedure-text/) and
+[SQL SERVER – Query to Find Column From All Tables of Database](http://blog.sqlauthority.com/2008/08/06/sql-server-query-to-find-column-from-all-tables-of-database/)
 
 After copying and pasting these over and over whenever I needed I finally decided to merge the two into a stored procedure for easier reuse.
 
